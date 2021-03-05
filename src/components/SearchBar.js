@@ -95,7 +95,7 @@ export default function CustomizedInputBase(props) {
     props.handleSearch(event.target.value);
   };
 
-  const getUserAddressBy = (lat, long) => {
+  const getUserAddressBy = (lat, long) => { // this works when we set on the location
     const latlng = {
       lat: lat,
       lng: long,
@@ -131,7 +131,7 @@ export default function CustomizedInputBase(props) {
       {page === "items" && (
         <InputBase
           className={classes.input}
-          placeholder="Search Items"
+          placeholder="Cherchez des plats"
           onChange={handleSearch}
           inputProps={{ "aria-label": "search for items" }}
         />

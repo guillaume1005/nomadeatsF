@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   safeFood: {
     fontSize: 64,
     fontWeight: 400,
+    // put maybe in the center
   },
   delivery: {
     color: "#157a21",
@@ -61,18 +62,19 @@ const HomeStart = () => {
     <section className={classes.presentation}>
       <div className={classes.introduction}>
         <Typography className={classes.safeFood} noWrap>
-          Safe Food
+          0
         </Typography>
         <Typography className={classes.delivery} noWrap>
-          DELIVERY
+          COMMISSIONS
         </Typography>
         <Typography variant="body2" className={classes.paragraph}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet.
+          Nos restaurateurs adorés ont besoin d'aide, particulièrement en
+          ce moment. C'est pourquoi nous proposons une application bénévole:
+          nous ne prenons aucunes commissions pour soutenir la restauration, tout
+          en vous proposant un service de livraison de qualité.
         </Typography>
         <Button variant="outlined" className={classes.ctaOrder}>
-          ORDER NOW
+          COMMANDER
         </Button>
       </div>
       <div className={classes.cover}>

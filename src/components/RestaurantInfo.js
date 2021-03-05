@@ -70,6 +70,7 @@ function Restaurant(props) {
           <Grid container direction="row">
             <Grid item xs={false} sm={1} />
             <Grid item xs={12} sm={6} style={{ marginTop: 120 }}>
+            {/* Before it was marginTop of 120 */}
               <Typography
                 gutterBottom
                 variant="h4"
@@ -85,20 +86,20 @@ function Restaurant(props) {
                 Costs Rs.{costForOne} for one
               </Typography>
               <Typography variant="body2" color="textPrimary">
-                Minimum order Rs.{minOrderAmount}
+                Commande minimale de {minOrderAmount}€
               </Typography>
               <Typography variant="body2" color="textPrimary">
                 {paymentString}
               </Typography>
               <br />
               <Typography variant="body2" color="textPrimary">
-                Address: {addressString}
+                Addresse: {addressString}
               </Typography>
               <Typography variant="body2" color="textPrimary">
-                Call: +91 {phoneNo}
+                Tel: +33 {phoneNo}
               </Typography>
               <Typography variant="body2" color="textPrimary">
-                Dine-In Timing: 1pm to 12am
+                Ouvert
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4} style={{ marginTop: 34 }}>

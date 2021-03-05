@@ -23,7 +23,7 @@ export const signupUser = (newUserData, history) => (dispatch) => {
         type: SIGNUP_SUCCESS,
       });
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/login");
+      history.push("/login"); // go to the login
     })
     .catch((err) => {
       console.log(err.response.data);
@@ -41,14 +41,14 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 };
 
 export const loginAction = (userData, history) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_UI }); // put also the types 
   axios
     .post("/auth/login", userData)
     .then((res) => {
       const jwt = `Bearer ${res.data.token}`;
       localStorage.setItem("jwt", jwt);
-      axios.defaults.headers.common["Authorization"] = jwt;
-      dispatch(getUserData());
+      axios.defaults.headers.common["Authorization"] = jwt; //put the token in the first place
+      dispatch(getUserData()); // here we store the data 
       dispatch({ type: CLEAR_ERRORS });
       console.log("Authenticated, check localStorage", jwt);
       history.push("/");
@@ -74,7 +74,7 @@ export const getUserData = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: SET_USER,
-        payload: res.data.result,
+        payload: res.data.result, // get the data from the server
       });
     })
     .catch((err) => console.log(err));
@@ -98,7 +98,7 @@ export const signupSeller = (newSellerData, history) => (dispatch) => {
       ) {
         const formattedAddress = result.data.results[0].formatted_address;
         const lat = result.data.results[0].geometry.location.lat;
-        const lng = result.data.results[0].geometry.location.lng;
+        const lng = result.data.results[0].geometry.location.lng; 
         newSellerData.append("lat", lat);
         newSellerData.append("lng", lng);
         newSellerData.append("formattedAddress", formattedAddress);
@@ -107,6 +107,7 @@ export const signupSeller = (newSellerData, history) => (dispatch) => {
       dispatch(signupSellerFinal(newSellerData, history));
     })
     .catch((err) => {
+      
       console.log(err);
     });
 };

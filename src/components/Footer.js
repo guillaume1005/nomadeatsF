@@ -50,58 +50,56 @@ export default function Footer() {
           <Grid container direction="row">
             <Grid item xs={12} sm={6}>
               <Typography variant="h5" component="p">
-                Company
+                Entreprise
               </Typography>
               <Typography variant="body1" component="p">
                 <br />
-                - About <br />
+                - À propos <br />
                 - Blog <br />
-                - Careers <br />
-                - Contact <br />
-                - Report Fraud <br />
+                - Équipe <br />
+                - Service Client <br />
+                - Reporter une fraude <br />
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography variant="h5" component="p">
-                For You
+                Pour Vous
               </Typography>
               <Typography variant="body1" component="p">
                 <br />
-                - Privacy <br />
-                - Terms <br />
-                - Security <br />
-                - Sitemap <br />
-                - Code of conduct <br />
+                - Données privées <br />
+                - Termes <br />
+                - Securité <br />
+                - Nos engagements <br />
               </Typography>
             </Grid>
           </Grid>
         ) : (
           <>
             <Typography variant="h4" component="p">
-              FoodHub for Business
+              NomadEats Business (Restaurants et Livreurs)
             </Typography>
             <Typography variant="body1" component="p">
-              Get more out of your business, without losing focus on what is
-              most important — delighting your customers
+              Développez votre commerce, sans aucune commission, sans perdre de vue ce qui est le plus important - régaler vos clients
             </Typography>
             <br />
             <Link to="/addrestaurant">
-              <Button className={classes.buttonStyleOne}>Get Started</Button>
+              <Button className={classes.buttonStyleOne}>Ça part</Button>
             </Link>
           </>
         )}
       </Grid>
       <Grid item xs={12} sm={3} className={classes.innerCont}>
         <Typography variant="h5" component="p">
-          FoodHub NewsLetter
+          NomadEats NewsLetter
         </Typography>
         <Typography variant="body1" component="p" style={{ marginBottom: 28 }}>
-          Stay updated with new offers from FoodHub
+          Restez à l'affut d'un an de nourriture offerte !
         </Typography>
-        <TextField label="Your Email address" variant="outlined" />
-        <Button className={classes.buttonStyleTwo}>SEND</Button>
+        <TextField label="Votre adresse Email" variant="outlined" />
+        <Button className={classes.buttonStyleTwo}>J'en suis !</Button>
       </Grid>
-      <Grid item xs={12} sm={3} className={classes.resources}>
+      {/* <Grid item xs={12} sm={3} className={classes.resources}>
         <Typography variant="h5" component="p">
           Resources/Stack Used
         </Typography>
@@ -114,7 +112,7 @@ export default function Footer() {
           - Zomato <br />
           - Freepik <br />
         </Typography>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

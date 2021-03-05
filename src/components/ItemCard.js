@@ -54,8 +54,9 @@ function Alert(props) {
 export default function ItemCard(props) {
   const classes = useStyles();
   const { title, imageUrl, description, price, _id } = props;
-  const imageUrlSplit = imageUrl.split("\\");
-  const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}/${imageUrlSplit[1]}`; //3002 - server port
+  const imageUrlSplit = imageUrl.split("\\"); // this is for windows image ?
+  // before there was also 'imageUrlSplit[1]', removed now after imageUrlSplit[0]
+  const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}`; //3002 - server port
 
   const dispatch = useDispatch();
 
@@ -140,7 +141,7 @@ export default function ItemCard(props) {
               {description}
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
-              Rs.{price}
+              {price}€ <br/>
             </Typography>
           </CardContent>
           {role === "ROLE_SELLER" ? (
@@ -167,7 +168,7 @@ export default function ItemCard(props) {
               }}
               variant="contained"
             >
-              Add to Cart
+              Ajouter au Panier
             </Button>
           ) : (
             <Link to="/login">

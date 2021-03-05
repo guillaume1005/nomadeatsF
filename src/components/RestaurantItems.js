@@ -39,11 +39,11 @@ function RestaurantItems(props) {
               ))
             ) : role === "ROLE_SELLER" ? (
               <p className={classes.paraSeller}>
-                No Items present, start adding Items to get your first order.
+                Pas encore de plats, commencez à en ajouter !
               </p>
             ) : (
               <p className={classes.para}>
-                No Items present to order, Come back Later.
+                Pas encore de plats, ça arrive...
               </p>
             )
           ) : null}

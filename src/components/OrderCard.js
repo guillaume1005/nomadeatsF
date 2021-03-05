@@ -75,21 +75,21 @@ const OrderCard = (props) => {
 
   const handleCancel = () => {
     const body = {
-      status: "Cancelled",
+      status: "Annulée",
     };
     dispatch(changeOrderStatus(order._id, body));
   };
 
   const handleAccept = () => {
     const body = {
-      status: "Accepted",
+      status: "Acceptée",
     };
     dispatch(changeOrderStatus(order._id, body));
   };
 
   const handleDelivery = () => {
     const body = {
-      status: "Out For Delivery",
+      status: "En livraison",
     };
     dispatch(changeOrderStatus(order._id, body));
   };
@@ -117,11 +117,11 @@ const OrderCard = (props) => {
         <Typography gutterBottom variant="body1" color="textPrimary">
           {role === "ROLE_USER" && `Ordered From - ${order.seller.name}`}
           {role === "ROLE_SELLER" &&
-            `Ordered By - ${order.user.name}, +91 ${order.user.address.phoneNo}`}
+            `Ordered By - ${order.user.name}, +33 ${order.user.address.phoneNo}`}
         </Typography>
         {role === "ROLE_USER" && (
           <Typography gutterBottom variant="body1" color="textPrimary">
-            Call - +91 {order.seller.phone}
+            Tel - +33 {order.seller.phone}
           </Typography>
         )}
 
@@ -165,22 +165,22 @@ const OrderCard = (props) => {
           <>
             <div style={{ display: "inline-block" }}>
               <Button className={classes.buttonCancel} onClick={handleCancel}>
-                Cancel Order
+                Annuler
               </Button>
               <Button className={classes.buttonAccept} onClick={handleAccept}>
-                Accept Order
+                Accepter
               </Button>
             </div>
           </>
         )}
         {role === "ROLE_SELLER" && order.status === "Accepted" && (
           <Button className={classes.buttonAccept} onClick={handleDelivery}>
-            Out For Delivery
+            En Livraison
           </Button>
         )}
         {role === "ROLE_SELLER" && order.status === "Out For Delivery" && (
           <Button className={classes.buttonAccept} onClick={handleCompleted}>
-            Order Completed
+            Commande terminée
           </Button>
         )}
         <br />

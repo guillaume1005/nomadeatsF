@@ -14,7 +14,7 @@ const initialState = {
   account: {},
   name: "",
   address: {},
-  imageUrl: [],
+  imageUrl: [], //maybe imageUrl is more of a string ?, before it was an array
   payment: [],
   items: [],
   tags: "",

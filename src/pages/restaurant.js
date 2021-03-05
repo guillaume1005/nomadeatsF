@@ -26,7 +26,7 @@ export default function Restaurant(props) {
     }
   }, [items]);
 
-  const [itemsState, setItemsState] = useState(items ? [] : null);
+  const [itemsState, setItemsState] = useState(items ? [] : null); // a useState
   const [filteredItemsState, setFilteredItemsState] = useState(
     items ? [] : null
   );
@@ -67,6 +67,8 @@ export default function Restaurant(props) {
     dispatch(fetchRestaurant(restId));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // this useEffect allows to show once what there is
+
   return (
     <>
       {loading ? (
@@ -89,7 +91,7 @@ export default function Restaurant(props) {
                 noWrap
                 style={{ textAlign: "center" }}
               >
-                Why starve when you have us&nbsp;&nbsp;
+                Petite faim ?&nbsp;&nbsp;
                 <span role="img" aria-label="fries" style={{ fontSize: 40 }}>
                   🍟
                 </span>
@@ -99,7 +101,7 @@ export default function Restaurant(props) {
                 noWrap
                 style={{ textAlign: "center" }}
               >
-                Order from wide varieties of different available Items below
+                Une large gamme de mets à déguster
               </Typography>
               <br />
             </Grid>

@@ -27,7 +27,7 @@ const RestaurantContent = () => {
         component="p"
         noWrap
       >
-        Order from your favourite Eatery -
+        Mangez chez votre Restau préféré -
       </Typography>
       <br />
       <Grid container spacing={2}>
@@ -40,7 +40,7 @@ const RestaurantContent = () => {
             </p>
           )
         ) : (
-          <p>Server Error, come back Later.</p>
+          <p>Rentrez votre addresse pour voir les restaurants près de chez vous !</p>
         )}
       </Grid>
     </>

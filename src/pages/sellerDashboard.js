@@ -39,7 +39,7 @@ export default function SellerDashboard() {
       setItemsState(items);
       setFilteredItemsState(items);
     }
-  }, [items]);
+  }, [items]); // allows to update the items of the restaurant
 
   const [itemsState, setItemsState] = useState(items ? [] : null);
   const [filteredItemsState, setFilteredItemsState] = useState(
@@ -103,6 +103,7 @@ export default function SellerDashboard() {
     setFilteredItemsState(newList);
   };
 
+
   return (
     <>
       <RestaurantInfo {...sellerData} />
@@ -115,7 +116,7 @@ export default function SellerDashboard() {
             style={{ textAlign: "center", marginBottom: 30 }}
             noWrap
           >
-            Add, Edit, Delete Items in your Restaurant&nbsp;&nbsp;
+            Éditez les plats du Restaurant &nbsp;&nbsp;
             <span role="img" aria-label="burger" style={{ fontSize: 40 }}>
               🍜
             </span>
@@ -126,9 +127,10 @@ export default function SellerDashboard() {
         </Grid>
         <Grid item xs={12} sm={1} />
         <RestaurantItems items={filteredItemsState} />
+        {/* This allows to filter all the items in the restaurant */}
       </Grid>
       <Button fullWidth className={classes.button} onClick={handleOpen}>
-        Add Item
+        Ajoutez un plat
       </Button>
       <ItemDialog
         open={open}

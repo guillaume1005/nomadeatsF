@@ -19,6 +19,13 @@ import useForm from "../hooks/forms";
 
 import CartItem from "../components/CartItem";
 
+// StripeComponent
+import StripeContainer from "../components/StripeContainer";
+
+
+
+// to make the style
+
 const useStyles = makeStyles((theme) => ({
   ...theme.spreadThis,
   title: {
@@ -138,19 +145,31 @@ const Cart = (props) => {
   }
 
   return (
+    
     <>
+      
       {loading ? (
         <Spinner />
       ) : (
         <>
           <Typography variant="h5" className={classes.title}>
             {step === 1 && `Cart (${cartItems} Items)`}
+            {/* We render the cartItems here */}
             {step === 2 && "Delivery Details"}
+            {/* We add a step 3 for the credit card */}
+            {step === 3 && "Moyen de paiement"}
+            {/* The steps allows to select what is rendered */}
+            {/* Maybe it is not useful to add the address again because we ask for it at the beginning */}
           </Typography>
           {step === 2 && (
             <MyButton tip="Go Back" onClick={prevStep}>
               <KeyboardBackspaceIcon />
             </MyButton>
+          )}
+          {step === 3 && (
+              <MyButton tip="Go Back" onClick={prevStep}>
+                <KeyboardBackspaceIcon />
+              </MyButton>
           )}
           <Grid container direction="row" spacing={2}>
             <Grid item sm={1} />
@@ -160,6 +179,7 @@ const Cart = (props) => {
                 cart.map((item) => (
                   <CartItem {...item} key={item.itemId._id} />
                 ))}
+                {/* This is where we render the items */}
               {step === 2 && (
                 <form>
                   <Typography
@@ -235,6 +255,43 @@ const Cart = (props) => {
                   </div>
                 </form>
               )}
+              {step === 3 && (
+
+
+                <Grid>
+
+                {/* Here we put the stripe check, we add a handleSubmit option that contacts the server, we just put the stripeContainer */}
+                {/* <Elements stripe={stripePromise}>
+                  <CardElement
+
+                    options={{
+                      style: {
+                        base: {
+                          marginTop: "30px",
+                          fontSize: '24px',
+                          borderRadius: "10px",
+                          backgroundColor: "#E8E8E8",
+                          color: "#424770",
+                          '::placeholder': {
+                            color: '#aab7c4',
+                          },
+                        },
+                        invalid: {
+                          color: '#9e2146'
+                        },
+                      },
+                    }}
+                    
+                    
+                    
+                     />
+                </Elements> */}
+
+                  <StripeContainer price="40" place={handlePlaceOrder} />
+                  
+                </Grid>
+
+              )}
             </Grid>
             <Grid item sm={3}>
               <Paper
@@ -245,6 +302,7 @@ const Cart = (props) => {
                 <div style={{ marginLeft: 20, marginRight: 20 }}>
                   <br />
                   <Typography gutterBottom variant="h5" noWrap>
+                    {/* The typography is not the same according to the steps */}
                     {step === 1 && "Total Amount"}
                     {step === 2 && "Order Summary"}
                     <br />
@@ -299,18 +357,24 @@ const Cart = (props) => {
                       disabled={price === 0}
                       onClick={nextStep}
                     >
-                      Proceed to Checkout
+                      Faire le checkout
                     </Button>
                   )}
                   {step === 2 && (
                     <Button
                       fullWidth
                       className={classes.checkoutButton}
-                      onClick={handlePlaceOrder}
+                      onClick={nextStep}
                     >
-                      Place Order
+                      Je paie
+
+                      {/* Here we change the {handlePlaceOrder position to after} */}
                     </Button>
                   )}
+                  
+                  
+
+                    
                 </div>
               </Paper>
             </Grid>

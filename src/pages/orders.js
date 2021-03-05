@@ -50,7 +50,7 @@ const Orders = (props) => {
   return (
     <>
       <Typography variant="h5" className={classes.title}>
-        Order History
+        Historique des commandes
       </Typography>
       <Grid item container direction="row">
         <Grid item xs={12} sm={1} />

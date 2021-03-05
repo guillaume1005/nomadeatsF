@@ -53,7 +53,7 @@ const Home = () => {
           <Grid container direction="column">
             <Grid item>
               <Typography variant="h5" className={classes.center} noWrap>
-                Your favourite food, delivered with FoodHub&nbsp;&nbsp;
+                Votre plat favori, livré avec NomadEats&nbsp;&nbsp;
                 <span style={{ fontSize: 40 }}>🍽</span>
               </Typography>
             </Grid>
@@ -67,7 +67,7 @@ const Home = () => {
                   restaurantMarkup
                 ) : (
                   <Typography variant="body1" className={classes.center} noWrap>
-                    Enter your location to view nearby restaurants
+                    Entrez votre addresse pour voir les restaurants à côté de chez vous
                   </Typography>
                 )}
               </Grid>

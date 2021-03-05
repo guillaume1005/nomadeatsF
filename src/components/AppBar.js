@@ -23,6 +23,12 @@ const useStyles = makeStyles(() => ({
     margin: "0 6px 0",
     display: "inline-block",
   },
+  buttonStyle: {
+    color: "black",
+    margin: "0 6px 0",
+    display: "inline-block",
+    backgroundColor: "green",
+  },
   buttons: {
     marginRight: 60,
   },
@@ -54,54 +60,55 @@ export default function AppBarPrimary() {
       <Toolbar>
         <Link to="/" className={classes.title}>
           <Typography variant="h6" noWrap>
-            <span className={classes.name}>FoodHub</span>
+            <span className={classes.name}>NomadEats</span>
           </Typography>
         </Link>
         {authenticated ? (
           role === "ROLE_SELLER" ? (
             <div className={classes.buttons}>
+            {/* Ce qui est affiché est le rôle du vendeur */}
               <Typography className={classes.buttonStyles}>
-                Seller Dashboard
+                Table de Bord
               </Typography>
               <Link to="/seller/orders">
-                <Button className={classes.buttonStyles}>Orders</Button>
+                <Button className={classes.buttonStyles}>Mes Commandes</Button>
               </Link>
               <Button
                 onClick={handleLogout}
                 className={classes.buttonStyles}
                 variant="outlined"
               >
-                Logout
+                Deconnexion
               </Button>
             </div>
           ) : (
             <div className={classes.buttons}>
               <Typography className={classes.buttonStyles}>
-                Hello, {firstName} {lastName}
+                Coucou, {firstName} {lastName}
               </Typography>
               <Link to="/orders">
-                <Button className={classes.buttonStyles}>Orders</Button>
+                <Button className={classes.buttonStyles}>Commandes</Button>
               </Link>
               <Link to={{ pathname: "/cart", state: { address: address } }}>
-                <Button className={classes.buttonStyles}>Cart</Button>
+                <Button className={classes.buttonStyles}>Panier</Button>                
               </Link>
               <Button
                 onClick={handleLogout}
                 className={classes.buttonStyles}
                 variant="outlined"
               >
-                Logout
+                Je pars
               </Button>
             </div>
           )
         ) : (
           <div className={classes.buttons}>
             <Link to="/login">
-              <Button className={classes.buttonStyles}>Login</Button>
+              <Button className={classes.buttonStyles}>Se Connecter</Button>
             </Link>
             <Link to="/register">
               <Button className={classes.buttonStyles} variant="outlined">
-                Register
+                S'inscrire
               </Button>
             </Link>
           </div>

@@ -28,10 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+
+
+export default function Login() { 
   const classes = useStyles();
 
-  const { loading, serverError, errors, signUpSuccess } = useSelector(
+  const { loading, serverError, errors, signUpSuccess } = useSelector( // server connection
     (state) => state.UI
   );
   const dispatch = useDispatch();
@@ -53,6 +55,7 @@ export default function Login() {
     loginHandle
   );
 
+
   let incorrectCredentialsError = null;
   let verifyEmailError = null;
   if (errors) {
@@ -60,6 +63,7 @@ export default function Login() {
       incorrectCredentialsError = errors;
     if (errors.includes("Verify your email")) verifyEmailError = errors;
   }
+
 
   return (
     <Grid container className={classes.form}>
@@ -93,7 +97,7 @@ export default function Login() {
             id="password"
             name="password"
             type="password"
-            label="Password"
+            label="Mot de Passe"
             className={classes.textField}
             onChange={handleInputChange}
             value={inputs.password}
@@ -131,7 +135,7 @@ export default function Login() {
           </Button>
           <br />
           <small className={classes.small}>
-            don't have an account ? sign up <Link to="/register">here</Link>
+            Pas encore de compte ? Inscris-toi  <Link to="/register">ici !</Link>
           </small>
         </form>
       </Grid>
