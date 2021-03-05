@@ -82,14 +82,14 @@ const OrderCard = (props) => {
 
   const handleAccept = () => {
     const body = {
-      status: "Acceptée",
+      status: "Accepted",
     };
     dispatch(changeOrderStatus(order._id, body));
   };
 
   const handleDelivery = () => {
     const body = {
-      status: "En livraison",
+      status: "Out For Delivery",
     };
     dispatch(changeOrderStatus(order._id, body));
   };
@@ -127,7 +127,7 @@ const OrderCard = (props) => {
 
         {role === "ROLE_SELLER" && (
           <Typography gutterBottom variant="body1" color="textPrimary">
-            Address -{" "}
+            Addresse -{" "}
             {
               order.user.address.aptName + ", " + order.user.address.locality
               // (`${order.user.address.aptName}, ${order.user.address.locality}`,
@@ -149,7 +149,7 @@ const OrderCard = (props) => {
             }
           />
           <Typography gutterBottom variant="body1" color="textPrimary">
-            Order {order.status}
+            Commande {order.status}
           </Typography>
         </div>
         {role === "ROLE_USER" && order.status === "Placed" && (
@@ -158,7 +158,7 @@ const OrderCard = (props) => {
             onClick={handleCancel}
             disabled={order.status !== "Placed"}
           >
-            Cancel Order
+            Annuler
           </Button>
         )}
         {role === "ROLE_SELLER" && order.status === "Placed" && (
