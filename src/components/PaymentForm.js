@@ -69,7 +69,7 @@ export default function PaymentForm(props) {
         try {
             // we can put this in the submit
             const {id} = paymentMethod
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}:3002/payment`, // this is where we catch the error
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}:/payment`, // this is where we catch the error, no need to specify the port, automatically redirected in it
             {
 
                 amount: props.price,
