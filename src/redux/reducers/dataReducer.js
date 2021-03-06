@@ -11,7 +11,7 @@ import {
 } from "../types";
 
 const initialState = {
-  restaurants: [],
+  restaurants: [], // we stock the first restaurant here, before it was []
   restaurant: {},
   cart: [],
   price: "",
@@ -30,7 +30,7 @@ export default function (state = initialState, action) {
       };
     case SET_RESTAURANTS:
       return {
-        ...state,
+        ...state, // return the same than before
         loading: false,
         restaurants: action.payload,
       };

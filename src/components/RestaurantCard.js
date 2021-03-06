@@ -70,7 +70,7 @@ export default function RestaurantCard(props) {
           }}
         >
           <Button size="small" color="primary">
-            Order Online
+            Je commande
           </Button>
         </Link>
       </CardActions>

@@ -7,7 +7,27 @@ import Grid from "@material-ui/core/Grid";
 
 import RestaurantCard from "./RestaurantCard";
 
+// for the style
+
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  
+
+  '@media only screen and (max-width: 750px)':{
+    text:{
+      display: 'none' // we remove the text for the phones
+    },
+    parag:{
+      display: 'none'
+    }
+  }
+}))
+
 const RestaurantContent = () => {
+
+  
+  const classes = useStyles(); // this is where we put the hook
   const { restaurants } = useSelector((state) => state.data);
   const restaurantArray = restaurants.restaurants;
 
@@ -20,7 +40,7 @@ const RestaurantContent = () => {
   };
   return (
     <>
-      <Typography
+      <Typography className={classes.text}
         gutterBottom
         variant="h6"
         color="textPrimary"
@@ -32,15 +52,20 @@ const RestaurantContent = () => {
       <br />
       <Grid container spacing={2}>
         {restaurantArray ? (
+
           restaurantArray.length > 0 ? (
             restaurantArray.map((restaurant) => getRestaurantCard(restaurant))
           ) : (
             <p>
-              No Restaurants currently available in your area, come back Later.
+              Pas de restaurants dans votre secteur. Revenez plus tard !
             </p>
           )
         ) : (
-          <p>Rentrez votre addresse pour voir les restaurants près de chez vous !</p>
+
+                  
+          <p className={classes.parag}>Rentrez votre addresse pour voir les restaurants près de chez vous !</p>
+          
+          
         )}
       </Grid>
     </>

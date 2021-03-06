@@ -9,6 +9,10 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+// responsive
+
+import { useMediaQuery } from 'react-responsive';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: "#e8ede1",
@@ -41,12 +45,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Footer() {
+  //responsive
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' }) // this is a hook
+
   const { authenticated } = useSelector((state) => state.auth);
   const classes = useStyles();
   return (
     <Grid container direction="row" className={classes.container}>
       <Grid item xs={12} sm={4} className={classes.innerCont}>
         {authenticated ? (
+          <>
+          {isTabletOrMobile ?
+
+          <>
+
+          <Typography>
+            Envie d'ouvrir ton restau ?
+          </Typography>
+
+          <br/>
+          <Link to="/addrestaurant">
+              <Button className={classes.buttonStyleOne}>Ça part</Button>
+          </Link>
+
+          </>
+
+
+
+          
+          :
+          
+          
+          
           <Grid container direction="row">
             <Grid item xs={12} sm={6}>
               <Typography variant="h5" component="p">
@@ -74,7 +104,26 @@ export default function Footer() {
               </Typography>
             </Grid>
           </Grid>
+          }
+          </>
         ) : (
+          <>
+          {isTabletOrMobile ?
+
+          <>
+          <Typography variant="h4" component="p">
+              NomadEats Business
+          </Typography>
+          <Typography variant="body1" component="p">
+                    Développez votre commerce, sans aucune commission, sans perdre de vue ce qui est le plus important - régaler vos clients
+          </Typography>
+                  <br />
+          <Link to="/addrestaurant">
+                    <Button className={classes.buttonStyleOne}>Ça part</Button>
+          </Link>
+          </>
+
+          :
           <>
             <Typography variant="h4" component="p">
               NomadEats Business (Restaurants et Livreurs)
@@ -87,17 +136,31 @@ export default function Footer() {
               <Button className={classes.buttonStyleOne}>Ça part</Button>
             </Link>
           </>
+          
+          }
+          </>
         )}
+        
       </Grid>
       <Grid item xs={12} sm={3} className={classes.innerCont}>
-        <Typography variant="h5" component="p">
-          NomadEats NewsLetter
-        </Typography>
-        <Typography variant="body1" component="p" style={{ marginBottom: 28 }}>
-          Restez à l'affut d'un an de nourriture offerte !
-        </Typography>
-        <TextField label="Votre adresse Email" variant="outlined" />
-        <Button className={classes.buttonStyleTwo}>J'en suis !</Button>
+      {isTabletOrMobile ?
+      <>
+
+      </>
+      :
+      <>
+      <Typography variant="h5" component="p">
+            NomadEats NewsLetter
+      </Typography>
+      <Typography variant="body1" component="p" style={{ marginBottom: 28 }}>
+            Restez à l'affut d'un an de nourriture offerte !
+      </Typography>
+      <TextField label="Votre adresse Email" variant="outlined" />
+      <Button className={classes.buttonStyleTwo}>J'en suis !</Button>
+      </>
+      
+      }
+        
       </Grid>
       {/* <Grid item xs={12} sm={3} className={classes.resources}>
         <Typography variant="h5" component="p">

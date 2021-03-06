@@ -53,6 +53,24 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     margin: 4,
   },
+
+  '@media only screen and (max-width: 750px)': {
+    rootHome:{
+      width: '95vw',
+    },
+    rootItems: {
+      width: '100vw'
+    },
+    results: {
+      width: '100vw',
+      left: 'auto',
+      height: 'auto'
+
+    },
+
+  }
+    
+  
 }));
 
 export default function CustomizedInputBase(props) {
@@ -88,7 +106,7 @@ export default function CustomizedInputBase(props) {
 
   const fetchRestByLocation = (latlng) => {
     dispatch(fetchRestaurantsByAddress(latlng.lat, latlng.lng));
-    props.action(true);
+    props.action(true); // we already see the result
   };
 
   const handleSearch = (event) => {

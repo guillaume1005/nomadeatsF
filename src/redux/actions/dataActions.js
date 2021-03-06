@@ -32,7 +32,6 @@ export const fetchRestaurants = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({
         type: SET_RESTAURANTS,
         payload: [],
@@ -43,7 +42,7 @@ export const fetchRestaurants = () => (dispatch) => {
 export const fetchRestaurantsByAddress = (lat, lng) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios
-    .get(`/restaurants-location/${lat}/${lng}`)
+    .get(`/restaurants-location/${lat}/${lng}`) // call to the api
     .then((res) => {
       dispatch({
         type: SET_RESTAURANTS,

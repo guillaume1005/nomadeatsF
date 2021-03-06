@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+
 
 //material-ui
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +11,13 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 import { logoutAction } from "../redux/actions/authActions";
+import { Link } from "react-router-dom";
+
+// import react responsive for the style
+
+import { useMediaQuery } from 'react-responsive'
+// use only classes for the style
+
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -25,9 +32,8 @@ const useStyles = makeStyles(() => ({
   },
   buttonStyle: {
     color: "black",
-    margin: "0 6px 0",
-    display: "inline-block",
     backgroundColor: "green",
+    marginRight: '0',
   },
   buttons: {
     marginRight: 60,
@@ -36,9 +42,39 @@ const useStyles = makeStyles(() => ({
     fontStyle: "bold",
     fontSize: 32,
   },
+
+  '@media only screen and (max-width: 750px)': {
+
+    name : {
+      fontSize: 14,
+      color: "blue"
+    },
+
+    title: {
+      marginLeft: 0
+      // THIS allows to put the title at the left for phones
+    },
+
+    buttonStyles:{
+
+
+      display: 'none'
+
+
+    }
+
+
+    
+  }
+
+  
 }));
 
 export default function AppBarPrimary() {
+
+
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' }) // this is a hook
+  
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -71,6 +107,7 @@ export default function AppBarPrimary() {
                 Table de Bord
               </Typography>
               <Link to="/seller/orders">
+              {/* Here we link it to the path "/seller/orders" */}
                 <Button className={classes.buttonStyles}>Mes Commandes</Button>
               </Link>
               <Button
@@ -110,7 +147,17 @@ export default function AppBarPrimary() {
               <Button className={classes.buttonStyles} variant="outlined">
                 S'inscrire
               </Button>
+              {/*    Only seen if it is a tablet or mobile    */}
+              
             </Link>
+              {isTabletOrMobile &&
+                <>
+                  {/* Here we have two links one inside the other, isue */}
+                  <Link to="/login">
+                    <Button style={{ marginRight: -50 }} className={classes.buttonStyle}>Se Connecter</Button>
+                  </Link>
+                </>
+              }
           </div>
         )}
       </Toolbar>

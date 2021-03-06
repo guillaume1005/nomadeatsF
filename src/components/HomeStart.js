@@ -7,6 +7,10 @@ import Button from "@material-ui/core/Button";
 
 import cover from "../images/food_upscaled.png";
 
+// for the style
+
+import { useMediaQuery } from 'react-responsive'
+
 const useStyles = makeStyles((theme) => ({
   presentation: {
     display: "flex",
@@ -54,9 +58,57 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#f7a692",
     marginTop: 30,
   },
+
+  paragraph2 : {
+    width: '100vw',
+    display: 'flex',
+    justifyContent: 'center',
+    marginLeft: -50,
+    textAlign: 'center'
+
+  },
+
+  textBelow:{
+    marginBottom: '2vh',
+    color: 'green'
+  },
+
+  '@media only screen and (max-width: 750px)': {
+    safeFood:{
+      display: 'flex',
+      justifyContent: 'center',
+      marginRight: '60px',
+    },
+    delivery:{
+      fontSize: 40,
+      display: 'flex',
+      justifyContent: 'center',
+      marginLeft: '-60px'
+    },
+    paragraph :{
+      display: 'none'
+    },
+    ctaOrder: {
+      display: 'none'
+    },
+    cover: {
+      height:"20vh"
+    },
+    presentation: {
+      minHeight: 'auto'
+    },
+    introduction: {
+      paddingLeft: '50px'
+    }
+  }
+
 }));
 
+
 const HomeStart = () => {
+
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' }) // this is a hook
+
   const classes = useStyles();
   return (
     <section className={classes.presentation}>
@@ -73,13 +125,24 @@ const HomeStart = () => {
           nous ne prenons aucunes commissions pour soutenir la restauration, tout
           en vous proposant un service de livraison de qualité.
         </Typography>
-        <Button variant="outlined" className={classes.ctaOrder}>
-          COMMANDER
-        </Button>
+        {isTabletOrMobile &&
+          <Typography variant="body2" className={classes.paragraph2}>
+          L'initiative citoyenne pour les restaurateurs ! <br />
+          Régalez-vous !
+        </Typography>
+        }
+        
+          <Button variant="outlined" className={classes.ctaOrder} onClick={() => window.scrollTo(0,window.innerHeight)}>
+            COMMANDER
+          </Button>
+        
       </div>
       <div className={classes.cover}>
         <img src={cover} alt="safe-delivery" className={classes.coverImg} />
       </div>
+      {isTabletOrMobile &&
+        <Typography variant='body2' className={classes.textBelow}> Rentrez votre addresse pour commander </Typography>
+      }
     </section>
   );
 };
