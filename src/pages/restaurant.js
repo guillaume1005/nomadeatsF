@@ -12,7 +12,13 @@ import RestaurantItems from "../components/RestaurantItems";
 import SearchBar from "../components/SearchBar";
 import { fetchRestaurant } from "../redux/actions/dataActions";
 
+// import react responsive for the style
+
+import { useMediaQuery } from 'react-responsive'
+
 export default function Restaurant(props) {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' }) // this is a hook
+
   const restId = props.location.state.restId;
   const { loading } = useSelector((state) => state.data);
   const restaurant = useSelector((state) => state.data.restaurant);
@@ -32,6 +38,8 @@ export default function Restaurant(props) {
   );
 
   const handleSearch = (value) => {
+
+
     // Variable to hold the original version of the list
     let currentList = [];
     // Variable to hold the filtered list before putting into state
@@ -77,6 +85,7 @@ export default function Restaurant(props) {
         <>
           <RestaurantInfo {...restaurant} />
           <Grid container direction="row" style={{ marginTop: 40 }}>
+            {!isTabletOrMobile &&
             <Grid
               item
               xs={12}
@@ -85,6 +94,8 @@ export default function Restaurant(props) {
                 paddingLeft: "520px",
               }}
             >
+            
+            
               <Typography
                 gutterBottom
                 variant="h5"
@@ -103,8 +114,12 @@ export default function Restaurant(props) {
               >
                 Une large gamme de mets à déguster
               </Typography>
+              
+            
               <br />
-            </Grid>
+              </Grid>
+            }
+            
             <Grid
               item
               xs={12}

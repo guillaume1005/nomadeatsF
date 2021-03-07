@@ -137,7 +137,8 @@ export default function ItemCard(props) {
             <Typography component="h5" variant="h5">
               {title}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary" noWrap>
+            <Typography variant="subtitle1" color="textSecondary">
+              {/* nowrap is to put it on one line */}
               {description}
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
@@ -168,7 +169,7 @@ export default function ItemCard(props) {
               }}
               variant="contained"
             >
-              Ajouter au Panier
+              Ajouter
             </Button>
           ) : (
             <Link to="/login">

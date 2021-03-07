@@ -38,6 +38,14 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     position: "relative",
   },
+
+  input1: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+    position: "relative",
+  },
+
+
   results: {
     position: "absolute",
     bottom: -166,
@@ -59,7 +67,8 @@ const useStyles = makeStyles((theme) => ({
       width: '95vw',
     },
     rootItems: {
-      width: '100vw'
+      width: '100vw',
+      marginLeft: -40
     },
     results: {
       width: '100vw',
@@ -67,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
       height: 'auto'
 
     },
+
+
 
   }
     
@@ -148,7 +159,7 @@ export default function CustomizedInputBase(props) {
 
       {page === "items" && (
         <InputBase
-          className={classes.input}
+          className={classes.input1}
           placeholder="Cherchez des plats"
           onChange={handleSearch}
           inputProps={{ "aria-label": "search for items" }}

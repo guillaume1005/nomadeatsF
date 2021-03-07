@@ -30,6 +30,19 @@ const useStyles = makeStyles(() => ({
     margin: "0 6px 0",
     display: "inline-block",
   },
+
+  buttonStyles2: {
+    color: "black",
+    margin: "0 6px 0",
+    display: "inline-block",
+  },
+
+  buttonStyles3: {
+    color: "black",
+    margin: "0 6px 0",
+    display: "inline-block",
+  },
+
   buttonStyle: {
     color: "black",
     backgroundColor: "green",
@@ -55,12 +68,14 @@ const useStyles = makeStyles(() => ({
       // THIS allows to put the title at the left for phones
     },
 
-    buttonStyles:{
+    buttonStyles2:{
+      fontSize: '11px',
 
+    },
 
-      display: 'none'
-
-
+    buttonStyles3: {
+      fontSize: '11px',
+      marginRight: -40
     }
 
 
@@ -102,27 +117,32 @@ export default function AppBarPrimary() {
         {authenticated ? (
           role === "ROLE_SELLER" ? (
             <div className={classes.buttons}>
-            {/* Ce qui est affiché est le rôle du vendeur */}
-              <Typography className={classes.buttonStyles}>
+            {/* what is seen for the vandor */}
+              {/* <Typography className={classes.buttonStyles2}>
                 Table de Bord
-              </Typography>
-              <Link to="/seller/orders">
-              {/* Here we link it to the path "/seller/orders" */}
-                <Button className={classes.buttonStyles}>Mes Commandes</Button>
-              </Link>
+              </Typography> */}
+              
+                <Link to="/seller/orders">
+                  {/* Here we link it to the path "/seller/orders" */}
+                  <Button className={classes.buttonStyles2}>Mes Commandes</Button>
+                </Link>
+              
+              
               <Button
                 onClick={handleLogout}
-                className={classes.buttonStyles}
+                className={classes.buttonStyles3}
                 variant="outlined"
               >
                 Deconnexion
               </Button>
             </div>
-          ) : (
+          ) : (!isTabletOrMobile ? (
+            
             <div className={classes.buttons}>
               <Typography className={classes.buttonStyles}>
                 Coucou, {firstName} {lastName}
               </Typography>
+                {/* If it is a computer, display this */}
               <Link to="/orders">
                 <Button className={classes.buttonStyles}>Commandes</Button>
               </Link>
@@ -138,26 +158,52 @@ export default function AppBarPrimary() {
               </Button>
             </div>
           )
+          :(
+            <>
+              {/* otherwise display logout */}
+              <Link to={{ pathname: "/cart", state: { address: address } }}>
+                <Button className={classes.buttonStyles}>Panier</Button>                
+              </Link>
+
+                  
+                  <Button
+                    onClick={handleLogout}
+                    className={classes.buttonStyles}
+                    variant="outlined"
+                  >
+                    Je pars
+              </Button>
+            </>
+          )
+          )
         ) : (
           <div className={classes.buttons}>
-            <Link to="/login">
+            {!isTabletOrMobile ?
+            (
+              <>
+              {/* display this if it is a computer */}
+              <Link to="/login">
               <Button className={classes.buttonStyles}>Se Connecter</Button>
             </Link>
             <Link to="/register">
               <Button className={classes.buttonStyles} variant="outlined">
-                S'inscrire
+                      S'inscrire
               </Button>
               {/*    Only seen if it is a tablet or mobile    */}
               
             </Link>
-              {isTabletOrMobile &&
-                <>
-                  {/* Here we have two links one inside the other, isue */}
-                  <Link to="/login">
-                    <Button style={{ marginRight: -50 }} className={classes.buttonStyle}>Se Connecter</Button>
-                  </Link>
-                </>
-              }
+            </>
+            )
+            :
+            (
+                  <>
+                    {/* Here we have two links one inside the other, isue */}
+                    <Link to="/login">
+                      <Button style={{ marginRight: -50 }} className={classes.buttonStyle}>Se Connecter</Button>
+                    </Link>
+                  </>
+            )}
+            
           </div>
         )}
       </Toolbar>

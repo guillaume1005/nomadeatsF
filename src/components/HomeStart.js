@@ -122,7 +122,7 @@ const HomeStart = () => {
         <Typography variant="body2" className={classes.paragraph}>
           Nos restaurateurs adorés ont besoin d'aide, particulièrement en
           ce moment. C'est pourquoi nous proposons une application bénévole:
-          nous ne prenons aucunes commissions pour soutenir la restauration, tout
+          nous ne prenons aucune commission pour soutenir la restauration, tout
           en vous proposant un service de livraison de qualité.
         </Typography>
         {isTabletOrMobile &&

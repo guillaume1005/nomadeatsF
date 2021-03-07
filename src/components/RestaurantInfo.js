@@ -10,6 +10,10 @@ import Grid from "@material-ui/core/Grid";
 import Spinner from "../util/spinner/spinner";
 import SwipeableImages from "./SwipeableImages";
 
+// import react responsive for the style
+
+import { useMediaQuery } from 'react-responsive'
+
 const useStyles = makeStyles({
   borderBottom: {
     borderBottom: "2px solid #000",
@@ -35,6 +39,9 @@ const useStyles = makeStyles({
 });
 
 function Restaurant(props) {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' }) // this is a hook
+
+  
   const classes = useStyles();
   const { loading } = useSelector((state) => state.data);
   const {
@@ -107,8 +114,13 @@ function Restaurant(props) {
                 <SwipeableImages images={imageUrl} type="restaurant" />
               ) : null}
             </Grid>
-            <div className={classes.borderLeft}></div>
-            <div className={classes.borderBottom}></div>
+            { !isTabletOrMobile &&
+            <>
+              <div className={classes.borderLeft}></div>
+              {/* This is where the border is, no display on the phone */}
+              <div className={classes.borderBottom}></div>
+              </>
+            }
             <Grid item xs={false} sm={1} />
           </Grid>
         </>
