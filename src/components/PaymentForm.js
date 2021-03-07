@@ -69,17 +69,17 @@ export default function PaymentForm(props) {
         try {
             // we can put this in the submit
             const {id} = paymentMethod
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}:/payment`, // this is where we catch the error, no need to specify the port, automatically redirected in it
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/payment`, // this is where we catch the error, no need to specify the port, automatically redirected in it
             {
 
-                amount: props.price,
+                amount: props.price, // here we put the id of the food
                 id
 
             })
 
             if(response.data.success){
                 console.log('Successful payment')
-                props.order()
+                props.order() // to order also after the payment
             }
                 
         }

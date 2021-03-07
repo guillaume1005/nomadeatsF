@@ -287,6 +287,7 @@ const Cart = (props) => {
                      />
                 </Elements> */}
 
+                {/* We replace the price by the id of the product */}
                   <StripeContainer price="40" place={handlePlaceOrder} />
                   
                 </Grid>
@@ -312,13 +313,13 @@ const Cart = (props) => {
                     <Typography variant="body2" color="textPrimary">
                       <div className={classes.spaceTypo}>
                         <span>Initial amount</span>
-                        <span>Rs. {price}</span>
+                        <span> {price} €</span>
                       </div>
                       <br />
                       <br />
                       <div className={classes.spaceTypo}>
                         <span>Delivery Charge</span>
-                        <span>Rs. {deliveryCharge}</span>
+                        <span> {deliveryCharge} €</span>
                       </div>
                       <br />
                     </Typography>
@@ -334,7 +335,7 @@ const Cart = (props) => {
                           <div className={classes.spaceTypo}>
                             <span>{item.itemId.title}</span>
                             <span>
-                              Rs.
+                              €
                               {item.itemId.price} x {item.quantity}
                             </span>
                           </div>
@@ -345,8 +346,8 @@ const Cart = (props) => {
                   <hr />
                   <Typography gutterBottom variant="h5" noWrap>
                     <div className={classes.spaceTypo}>
-                      <span>Grand Total</span>
-                      <span>Rs. {price + deliveryCharge}</span>
+                      <span>Total</span>
+                      <span> {price + deliveryCharge} €</span>
                     </div>
                     <br />
                   </Typography>

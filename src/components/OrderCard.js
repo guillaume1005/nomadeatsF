@@ -75,7 +75,7 @@ const OrderCard = (props) => {
 
   const handleCancel = () => {
     const body = {
-      status: "Annulée",
+      status: "Canceled", //after annulé
     };
     dispatch(changeOrderStatus(order._id, body));
   };
