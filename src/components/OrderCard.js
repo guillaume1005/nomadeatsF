@@ -94,6 +94,7 @@ const OrderCard = (props) => {
     dispatch(changeOrderStatus(order._id, body));
   };
 
+  // this is to update the orders
   const handleCompleted = () => {
     const body = {
       status: "Completed",
@@ -137,6 +138,7 @@ const OrderCard = (props) => {
         )}
         <div style={{ margin: "10px 20px 10px 0px" }}>
           <SummaryExpansion condition="Orders" items={order.items} />
+          {/* items.map(item.item._id or title) */}
         </div>
         <Typography gutterBottom variant="body1" color="textPrimary">
           Ordered - {dayjs(order.createdAt).fromNow()}

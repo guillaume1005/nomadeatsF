@@ -50,10 +50,10 @@ export default function RestaurantCard(props) {
           {tags}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          Costs Rs.{costForOne} for one
+          Coût moyen de {costForOne} €
         </Typography>
         <Typography variant="body2" color="textPrimary">
-          Minimum order Rs.{minOrderAmount}
+          Montant minimal {minOrderAmount}€
         </Typography>
         <Typography variant="body2" color="textPrimary">
           {paymentString}

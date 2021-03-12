@@ -54,6 +54,12 @@ const useStyles = makeStyles((theme) => ({
       color: "#bfbfbf",
     },
   },
+  '@media only screen and (max-width: 750px)': {
+    gridStripe:{
+
+      width: '90vw'
+    }
+  }
 }));
 
 const Cart = (props) => {
@@ -61,9 +67,12 @@ const Cart = (props) => {
 
   const dispatch = useDispatch();
   const classes = useStyles();
-  const { loading, cart, price } = useSelector((state) => state.data);
+  const { loading, cart, price } = useSelector((state) => state.data); // here is the cart
+  //creator is the name of the restaurant that created this, need creator and id (and after also location)
   const { errors } = useSelector((state) => state.UI);
   const history = useHistory();
+
+  console.log(history)
 
   let deliveryCharge = 0;
   let cartPresent = Array.isArray(cart) && cart.length > 0;
@@ -75,7 +84,7 @@ const Cart = (props) => {
   let zipError = null;
   let phoneNoError = null;
 
-  if (price !== 0) deliveryCharge = 20;
+  if (price !== 0) deliveryCharge = 2; // change the delivery charge (maybe always 2 euros)
 
   const handlePlaceOrder = () => {
     const userData = {
@@ -177,7 +186,10 @@ const Cart = (props) => {
               {cartPresent &&
                 step === 1 &&
                 cart.map((item) => (
+                  <>
                   <CartItem {...item} key={item.itemId._id} />
+                  {/* the id of the product is what whe want  */}
+                  </>
                 ))}
                 {/* This is where we render the items */}
               {step === 2 && (
@@ -258,7 +270,7 @@ const Cart = (props) => {
               {step === 3 && (
 
 
-                <Grid>
+                <Grid className={classes.gridStripe}>
 
                 {/* Here we put the stripe check, we add a handleSubmit option that contacts the server, we just put the stripeContainer */}
                 {/* <Elements stripe={stripePromise}>
@@ -288,12 +300,14 @@ const Cart = (props) => {
                 </Elements> */}
 
                 {/* We replace the price by the id of the product */}
-                  <StripeContainer price="40" place={handlePlaceOrder} />
+                  <StripeContainer cart={cart} place={handlePlaceOrder} />
+                  {/* We pass in all the cart */}
                   
                 </Grid>
 
               )}
             </Grid>
+            
             <Grid item sm={3}>
               <Paper
                 className={classes.paper}
@@ -344,6 +358,7 @@ const Cart = (props) => {
                       );
                     })}
                   <hr />
+                  
                   <Typography gutterBottom variant="h5" noWrap>
                     <div className={classes.spaceTypo}>
                       <span>Total</span>

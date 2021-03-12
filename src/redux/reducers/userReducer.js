@@ -23,7 +23,7 @@ const initialState = {
   cart: {},
   _id: "",
   firstName: "",
-  lastName: "",
+  lastName: "", 
 };
 
 export default function (state = initialState, action) {

@@ -145,22 +145,22 @@ export default function AddRestaurant() {
                   className={classes.title}
                   style={{ textAlign: "center" }}
                 >
-                  Add a Restaurant
+                  Ajouter un restaurant
                 </Typography>
                 <Typography
                   variant="body1"
                   component="p"
                   style={{ margin: "10px 10px 2px 10px" }}
                 >
-                  Basic Info - Get Started
+                  Commencer maintenant !
                 </Typography>
                 <form noValidate onSubmit={handleSubmit}>
                   <TextField
                     id="restName"
                     name="name"
-                    label="Restaurant Name"
+                    label="Nom du restaurant"
                     className={classes.textField}
-                    placeholder="Your restaurant name"
+                    placeholder="Le nom de votre restaurant"
                     onChange={handleInputChange}
                     value={inputs.name}
                     helperText={nameError}
@@ -171,8 +171,8 @@ export default function AddRestaurant() {
                   <TextField
                     id="email"
                     name="email"
-                    label="Business Email"
-                    placeholder="Your business Email"
+                    label="Email"
+                    placeholder="Votre email"
                     className={classes.textField}
                     onChange={handleInputChange}
                     value={inputs.email}
@@ -185,7 +185,7 @@ export default function AddRestaurant() {
                     id="tags"
                     name="tags"
                     label="Tags"
-                    placeholder="North-Indian, Desserts, Bakery"
+                    placeholder="Libanais, grec, italien"
                     className={classes.textField}
                     onChange={handleInputChange}
                     value={inputs.tags}
@@ -197,8 +197,8 @@ export default function AddRestaurant() {
                   <TextField
                     id="costForOne"
                     name="costForOne"
-                    label="Cost For One"
-                    placeholder="Cost for single person"
+                    label="Coût moyen"
+                    placeholder="Coût moyen"
                     className={classes.textField}
                     onChange={handleInputChange}
                     value={inputs.costForOne}
@@ -211,8 +211,8 @@ export default function AddRestaurant() {
                   <TextField
                     id="minOrderAmount"
                     name="minOrderAmount"
-                    label="Min Order Amount"
-                    placeholder="Minimum amount to place order"
+                    label="Montant minimal"
+                    placeholder="Montant minimal pour placer la commande"
                     className={classes.textField}
                     onChange={handleInputChange}
                     value={inputs.minOrderAmount}
@@ -233,7 +233,7 @@ export default function AddRestaurant() {
                     <TextField
                       id="aptName"
                       name="aptName"
-                      label="Floor/Apartment Name"
+                      label="Numéro de rue"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.aptName}
@@ -245,7 +245,7 @@ export default function AddRestaurant() {
                     <TextField
                       id="locality"
                       name="locality"
-                      label="Locality"
+                      label="Ville"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.locality}
@@ -257,7 +257,7 @@ export default function AddRestaurant() {
                     <TextField
                       id="street"
                       name="street"
-                      label="Street"
+                      label="Rue"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.street}
@@ -269,7 +269,7 @@ export default function AddRestaurant() {
                     <TextField
                       id="zipCode"
                       name="zip"
-                      label="Zip Code"
+                      label="Code postal"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.zip}
@@ -282,7 +282,7 @@ export default function AddRestaurant() {
                     <TextField
                       id="phoneNo"
                       name="phoneNo"
-                      label="Contact Number"
+                      label="Numéro de contact"
                       className={classes.textField}
                       type="number"
                       onChange={handleInputChange}
@@ -296,8 +296,8 @@ export default function AddRestaurant() {
                   <TextField
                     id="payment"
                     name="payment"
-                    label="Payment Mode"
-                    placeholder="Cash, Online"
+                    label="Moyen de paiement"
+                    placeholder="Cash, Carte de Crédit"
                     className={classes.textField}
                     onChange={handleInputChange}
                     value={inputs.payment}
@@ -311,7 +311,7 @@ export default function AddRestaurant() {
                     component="p"
                     style={{ margin: "10px 10px 2px 10px" }}
                   >
-                    Upload Images:
+                    Téléchargez des images
                   </Typography>
                   <input
                     accept="image/*"
@@ -328,14 +328,14 @@ export default function AddRestaurant() {
                       component="p"
                       style={{ margin: "4px 10px 2px 10px", color: "#f44336" }}
                     >
-                      Upload an Image as well
+                      Téléchargez une image
                     </Typography>
                   )}
                   <TextField
                     id="password"
                     name="password"
                     type="password"
-                    label="Password"
+                    label="Mot de Passe"
                     className={classes.textField}
                     onChange={handleInputChange}
                     value={inputs.password}
@@ -348,7 +348,7 @@ export default function AddRestaurant() {
                     id="confirmPassword"
                     name="confirmPassword"
                     type="password"
-                    label="Confirm Password"
+                    label="Confirmez le mot de passe"
                     className={classes.textField}
                     onChange={handleInputChange}
                     value={inputs.confirmPassword}
@@ -376,7 +376,7 @@ export default function AddRestaurant() {
                     fullWidth
                     disabled={loading}
                   >
-                    Submit
+                    Envoyer
                     {loading && (
                       <CircularProgress
                         size={30}
@@ -389,7 +389,7 @@ export default function AddRestaurant() {
                     className={classes.small}
                     style={{ marginLeft: "260px" }}
                   >
-                    Partner with FoodHub and scale your business
+                    Boostez votre business avec Nomadeats
                   </small>
                 </form>
               </Grid>
@@ -408,7 +408,7 @@ export default function AddRestaurant() {
               noWrap
               style={{ textAlign: "center" }}
             >
-              Get Started in just 3 steps
+              Commencez dès maintenant !
               <br />
               <br />
             </Typography>
@@ -417,10 +417,9 @@ export default function AddRestaurant() {
               color="textPrimary"
               style={{ marginLeft: "30px", fontSize: "16px" }}
             >
-              1. Tell us about your restaurant. <br />
-              2. Verify your Email. <br />
-              3. Access Restaurant Dashboard and go
-              &nbsp;&nbsp;&nbsp;&nbsp;live.
+              1. Parlez nous de votre restaurant <br />
+              2. Verifiez votre Email <br />
+              3. Accédez à la table de Bord de votre restaurant et ça part !
               <br />
               <br />
               <br />

@@ -72,7 +72,7 @@ export default function PaymentForm(props) {
             const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/payment`, // this is where we catch the error, no need to specify the port, automatically redirected in it
             {
 
-                amount: props.price, // here we put the id of the food
+                cart: props.cart, // here we put the id of the food
                 id
 
             })

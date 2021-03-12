@@ -14,6 +14,7 @@ import RestaurantContent from "../components/RestaurantContent";
 
 
 
+
 // import store from "../redux/store";
 // import { fetchRestaurantsByAddress } from "../redux/actions/dataActions";
 
@@ -62,18 +63,19 @@ const Home = () => {
   let restaurantMarkup = loading ? <Spinner /> : <RestaurantContent />;
   return (
     <>
+      
       {authenticated && role === "ROLE_SELLER" ? (
         <Redirect to="/seller/dashboard" />
       ) : (
         <>
-          <HomeStart />
+          {/* Before it was HomeStart here */}
           <Grid container direction="column">
             <Grid item>
               <Typography variant="h5" className={classes.center} noWrap>
                 Votre plat favori, livré avec NomadEats&nbsp;&nbsp;
                 <span style={{ fontSize: 40 }}>🍽</span>
                 <br/>
-                Votre lieu:
+                Saisissez votre adresse
               </Typography>
             </Grid>
             <Grid item className={classes.SearchBar}>
@@ -113,6 +115,7 @@ const Home = () => {
               <Grid item xs={false} sm={1} />
             </Grid>
           </Grid>
+          <HomeStart />
         </>
       )}
     </>

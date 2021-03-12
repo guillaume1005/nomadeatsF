@@ -1,11 +1,11 @@
 import React from "react";
 
-import ItemCard from "../components/ItemCard";
 import { useSelector } from "react-redux";
 
 //material-ui
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
+import RestauDetails from './RestauDetails';
 
 const useStyles = makeStyles({
   para: {
@@ -18,6 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
+
 function RestaurantItems(props) {
   const classes = useStyles();
   const { items } = props;
@@ -25,7 +26,10 @@ function RestaurantItems(props) {
     account: { role },
   } = useSelector((state) => state.auth);
 
+
+
   return (
+    <>
     <Grid item container direction="row">
       <Grid item xs={12} sm={1} />
       <Grid item xs={12} sm={10}>
@@ -34,7 +38,12 @@ function RestaurantItems(props) {
             items.length > 0 ? (
               items.map((item) => (
                 <Grid item xs={12} sm={4} key={item._id}>
-                  <ItemCard {...item} />
+                  <RestauDetails {...item} />
+                  {/* Now we put everything in the modal */}
+                  {/* <div onClick={() => {setOpen(true)}} style={{ cursor: 'pointer'}}>
+                    <ItemCard {...item} />
+                  </div> */}
+                
                 </Grid>
               ))
             ) : role === "ROLE_SELLER" ? (
@@ -51,6 +60,7 @@ function RestaurantItems(props) {
       </Grid>
       <Grid item xs={12} sm={1} />
     </Grid>
+    </>
   );
 }
 

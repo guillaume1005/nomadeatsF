@@ -16,6 +16,8 @@ import MuiAlert from "@material-ui/lab/Alert";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
+
+
 //custom-hook
 import useForm from "../hooks/forms";
 
@@ -27,13 +29,17 @@ import { addToCart } from "../redux/actions/dataActions";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    justifyContent: 'space-between'
+    
   },
   details: {
     display: "flex",
     flexDirection: "column",
+    height: '270px' // 150 seem to be really good with the click on the product that goes to the cart
   },
   content: {
     flex: "1 0 auto",
+    width: '100px'
   },
   cover: {
     height: "180",
@@ -45,6 +51,12 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
+  title: {
+    fontSize: 16
+  },
+  text: {
+    fontSize: 12
+  }
 }));
 
 function Alert(props) {
@@ -53,7 +65,7 @@ function Alert(props) {
 
 export default function ItemCard(props) {
   const classes = useStyles();
-  const { title, imageUrl, description, price, _id } = props;
+  const { title, imageUrl, description, price, _id, options } = props; // get the props
   const imageUrlSplit = imageUrl.split("\\"); // this is for windows image ?
   // before there was also 'imageUrlSplit[1]', removed now after imageUrlSplit[0]
   const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}`; //3002 - server port
@@ -66,10 +78,21 @@ export default function ItemCard(props) {
   } = useSelector((state) => state.auth);
   const { addCartSuccess } = useSelector((state) => state.data);
 
+  
+
   const [open, setOpen] = useState(false);
   const [openSnackBar, setSnackBar] = useState(false);
   const [image, setImage] = useState(null);
-  const { inputs, handleInputChange } = useForm({
+  const [copyOptions, setCopyOptions] = useState(options)
+
+
+
+  const onSetCopy = (object) => {
+    setCopyOptions(object) // this is the hook
+  }
+
+
+  const { inputs, handleInputChange } = useForm({ // do not get the inputs
     title: "",
     description: "",
     price: "",
@@ -77,9 +100,13 @@ export default function ItemCard(props) {
 
   const handleFileSelect = (event) => {
     setImage(event.target.files[0]);
+    
   };
 
+
   const handleClose = () => {
+    
+
     inputs.title = "";
     inputs.description = "";
     inputs.price = "";
@@ -94,10 +121,11 @@ export default function ItemCard(props) {
     itemData.append("title", inputs.title);
     itemData.append("description", inputs.description);
     itemData.append("price", inputs.price);
+    itemData.append("options", JSON.stringify(copyOptions))
     dispatch(editItem(itemData, _id)); // eslint-disable-next-line
     handleClose();
   };
-
+//instanciate the edit on the objects
   const openEdit = () => {
     inputs.title = title;
     inputs.price = price;
@@ -109,11 +137,40 @@ export default function ItemCard(props) {
     dispatch(deleteItem(_id));
   };
 
-  const handleCart = () => {
+  const handleCart = (options) => {
+
+    // transforming options into
+    // [{
+    //   category: 'boom'
+    //   checked: [1,2,3,2,1]
+    // }]
+    // insteadof 
+    // [{
+    //   category: 'boom'
+    //   customs: {
+    //     selected: []
+    //     checked: []
+    //     price: []
+    //     }
+    // }]
+    
+    const newArray = options;
+    const bossArray = []
+
+    console.log(newArray)
+
+    newArray.forEach((element) => {
+      bossArray.push({
+        'category': element.category,
+        'checked': element.customs.checked
+
+      })
+    })
     const itemData = {
-      itemId: _id,
+      itemId: _id, // not only the id, but also the options
+      options: JSON.stringify(bossArray)
     };
-    dispatch(addToCart(itemData));
+    dispatch(addToCart(itemData)); //add the object to the cart
   };
 
   const handleCloseSnackBar = (event, reason) => {
@@ -129,19 +186,23 @@ export default function ItemCard(props) {
     if (addCartSuccess || addCartSuccess == null) setSnackBar(true);
   };
 
+
+
+
+
   return (
     <>
       <Card className={classes.root} variant="outlined">
         <div className={classes.details}>
           <CardContent className={classes.content}>
-            <Typography component="h5" variant="h5">
+            <Typography component="h5" variant="h5" className={classes.title}>
               {title}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
+            <Typography variant="subtitle1" color="textSecondary" className={classes.text}>
               {/* nowrap is to put it on one line */}
               {description}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
+            <Typography variant="subtitle1" color="textSecondary" className={classes.title}>
               {price}€ <br/>
             </Typography>
           </CardContent>
@@ -155,7 +216,8 @@ export default function ItemCard(props) {
               </MyButton>
             </div>
           ) : authenticated ? (
-            <Button
+            <>
+            {/* <Button
               color="secondary"
               style={{
                 color: "#000",
@@ -164,15 +226,18 @@ export default function ItemCard(props) {
                 marginBottom: "10%",
               }}
               onClick={() => {
-                handleCart();
-                handleSnackBar();
+                handleCart(copyOptions); // the options of the item
+                handleSnackBar(); // get the update for the client
               }}
               variant="contained"
             >
               Ajouter
-            </Button>
+            </Button> */}
+            </>
           ) : (
-            <Link to="/login">
+            <>
+            {/* This is what it was displayed before */}
+            {/* <Link to="/login">
               <Button
                 color="secondary"
                 style={{
@@ -183,9 +248,11 @@ export default function ItemCard(props) {
                 }}
                 variant="contained"
               >
-                Add to Cart
+                Ajouter
               </Button>
-            </Link>
+            </Link> */}
+            </>
+            
           )}
         </div>
         <CardMedia
@@ -194,13 +261,18 @@ export default function ItemCard(props) {
           title="Item order"
         />
       </Card>
-      <ItemDialog
+      <ItemDialog 
         open={open}
         handleClose={handleClose}
         handleSubmit={handleSubmit}
         handleFileSelect={handleFileSelect}
         inputs={inputs}
         handleInputChange={handleInputChange}
+        settle={copyOptions}
+        title={title}
+        onSetCopy={onSetCopy} // hook
+
+
       />
       <div className={classes.snackbar}>
         <Snackbar
@@ -216,6 +288,7 @@ export default function ItemCard(props) {
           </Alert>
         </Snackbar>
       </div>
+
     </>
   );
 }

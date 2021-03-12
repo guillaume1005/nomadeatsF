@@ -11,7 +11,7 @@ export default function StripeContainer(props) {
 
     return(
         <Elements stripe={stripeTestPromise}>
-            <PaymentForm price={props.price} order={props.place} />
+            <PaymentForm cart={props.cart} order={props.place} />
         </Elements>
     )
 }

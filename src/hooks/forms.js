@@ -10,7 +10,7 @@ const useForm = (initialValues, callback) => {
     event.persist();
     setInputs((inputs) => ({
       ...inputs,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value, // this changes the component event.target.name
     }));
   };
   return {

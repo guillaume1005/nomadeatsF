@@ -80,8 +80,7 @@ export default function Login() {
         <form noValidate onSubmit={handleSubmit}>
           {signUpSuccess && (
             <Typography variant="body2" className={classes.customSuccess}>
-              Account registered successfully, please verify your Email before
-              logging-in
+              Votre compte a bien été enregistré. Vérifiez votre email en pensant à vérifier vos SPAMS.
             </Typography>
           )}
           <TextField

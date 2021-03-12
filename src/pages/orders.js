@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Orders = (props) => {
-  const dispatch = useDispatch();
-  const { orders } = useSelector((state) => state.data);
+  const dispatch = useDispatch(); // function that updates the memory
+  const { orders } = useSelector((state) => state.data); // get data, hook maybe
   const {
     account: { role },
     _id,
@@ -33,9 +33,9 @@ const Orders = (props) => {
   const classes = useStyles();
 
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getOrders()); // at the beginning it executes this
     const socket = openSocket(process.env.REACT_APP_SERVER_URL);
-    socket.emit("add-user", { userId: _id });
+    socket.emit("add-user", { userId: _id }); // open a socket between user and server
     socket.on("orders", (data) => {
       if (data.action === "update") {
         dispatch(socketStatusUpdate(data.order));
@@ -61,6 +61,7 @@ const Orders = (props) => {
                 orders.map((order) => (
                   <Grid item xs={12} sm={4} key={order._id}>
                     <OrderCard order={order} role={role} />
+                    {/* Get the list of items for the payment */}
                   </Grid>
                 ))
               ) : (

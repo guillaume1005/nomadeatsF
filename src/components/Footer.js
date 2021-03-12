@@ -149,15 +149,19 @@ export default function Footer() {
       </>
       :
       <>
-      <Typography variant="h5" component="p">
-            NomadEats NewsLetter
-      </Typography>
-      <Typography variant="body1" component="p" style={{ marginBottom: 28 }}>
-            Restez à l'affut d'un an de nourriture offerte !
-      </Typography>
-      <TextField label="Votre adresse Email" variant="outlined" />
-      <Button className={classes.buttonStyleTwo}>J'en suis !</Button>
+        <div style={{position: 'absolute', right:100}}>
+          <Typography variant="h5" component="p">
+                NomadEats NewsLetter
+          </Typography>
+          <Typography variant="body1" component="p" style={{ marginBottom: 28 }}>
+                Restez à l'affut d'un an de nourriture offerte !
+          </Typography>
+          <TextField label="Email" variant="outlined" />
+          <Button className={classes.buttonStyleTwo}>J'en suis !</Button>
+        </div>
+        
       </>
+      
       
       }
         

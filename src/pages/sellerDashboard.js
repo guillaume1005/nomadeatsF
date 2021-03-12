@@ -30,12 +30,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SellerDashboard() {
   const classes = useStyles();
-  const sellerData = useSelector((state) => state.auth);
-  const { items } = sellerData;
+  const sellerData = useSelector((state) => state.auth); // 
+  const { items } = sellerData; // access the variable from this, only take the items
   const dispatch = useDispatch();
 
+
+  const [copyOptions, setCopyOptions] = useState(items)
+
+  const onSetCopy = (object) => {
+    setCopyOptions(object)
+  }
+
   useEffect(() => {
-    if (items) {
+    if (items) { // only get in if items
       setItemsState(items);
       setFilteredItemsState(items);
     }
@@ -52,6 +59,8 @@ export default function SellerDashboard() {
     description: "",
     price: "",
   });
+  
+
 
   const handleFileSelect = (event) => {
     setImage(event.target.files[0]);
@@ -70,13 +79,15 @@ export default function SellerDashboard() {
   };
 
   const handleSubmit = () => {
-    const itemData = new FormData();
-    itemData.append("image", image);
-    itemData.append("title", inputs.title);
-    itemData.append("description", inputs.description);
-    itemData.append("price", inputs.price);
-    dispatch(addItem(itemData)); // eslint-disable-next-line
-    handleClose();
+      const itemData = new FormData();
+      itemData.append("image", image);
+      itemData.append("title", inputs.title);
+      itemData.append("description", inputs.description);
+      itemData.append("price", inputs.price);
+      itemData.append("options", JSON.stringify(copyOptions))
+      dispatch(addItem(itemData)); // eslint-disable-next-line
+      handleClose();
+    
   };
 
   const handleSearch = (value) => {
@@ -139,6 +150,8 @@ export default function SellerDashboard() {
         handleFileSelect={handleFileSelect}
         inputs={inputs}
         handleInputChange={handleInputChange}
+        onSetCopy={onSetCopy}
+        settle={copyOptions}
       />
     </>
   );

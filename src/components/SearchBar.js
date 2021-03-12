@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
-    position: "relative",
+    position: "relative"
+    
   },
 
   input1: {
@@ -47,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
 
 
   results: {
-    position: "absolute",
-    bottom: -166,
+    position: "absolute", // before the position was absolute
+    bottom: 400,
     left: "26%",
     zIndex: 999,
     width: 760,
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
       left: 'auto',
       height: 'auto'
 
-    },
+    }
 
 
 
@@ -158,12 +159,15 @@ export default function CustomizedInputBase(props) {
       {page === "home" && <LocationOn className={classes.iconButton} />}
 
       {page === "items" && (
+        <>
+        {/* check if the page is items */}
         <InputBase
           className={classes.input1}
           placeholder="Cherchez des plats"
           onChange={handleSearch}
           inputProps={{ "aria-label": "search for items" }}
         />
+        </>
       )}
 
       {page === "home" && (
@@ -181,7 +185,7 @@ export default function CustomizedInputBase(props) {
             <>
               <InputBase
                 {...getInputProps({
-                  placeholder: "Enter delivery address",
+                  placeholder: "Entrez votre adresse de livraison",
                 })}
                 className={classes.input}
                 inputProps={{

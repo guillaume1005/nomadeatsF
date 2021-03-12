@@ -132,7 +132,8 @@ const HomeStart = () => {
         </Typography>
         }
         
-          <Button variant="outlined" className={classes.ctaOrder} onClick={() => window.scrollTo(0,window.innerHeight)}>
+          <Button variant="outlined" className={classes.ctaOrder} onClick={() => window.scrollTo(0,0)}>
+          {/* window.innerHeight */}
             COMMANDER
           </Button>
         
