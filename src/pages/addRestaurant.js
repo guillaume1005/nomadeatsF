@@ -94,7 +94,7 @@ export default function AddRestaurant() {
   const signupSellerHandle = (props) => {
     const formData = new FormData();
     for (let i = 0; i < images.length; i++) {
-      formData.append("images", images[i]);
+      formData.append("image", images[i]); //test, before imageS
     }
     formData.append("name", inputs.name);
     formData.append("email", inputs.email);

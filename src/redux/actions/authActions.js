@@ -45,9 +45,9 @@ export const loginAction = (userData, history) => (dispatch) => {
   axios
     .post("/auth/login", userData)
     .then((res) => {
-      const jwt = `Bearer ${res.data.token}`;
+      const jwt = `Bearer ${res.data.token}`; // this is where we keep the token
       localStorage.setItem("jwt", jwt);
-      axios.defaults.headers.common["Authorization"] = jwt; //put the token in the first place
+      axios.defaults.headers.common["Authorization"] = jwt; //put the token in the first place in the headers
       dispatch(getUserData()); // here we store the data 
       dispatch({ type: CLEAR_ERRORS });
       console.log("Authenticated, check localStorage", jwt);

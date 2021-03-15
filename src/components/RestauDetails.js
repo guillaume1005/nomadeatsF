@@ -65,10 +65,15 @@ export default function RestauDetails(props) {
 
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' }) // this is a hook
 
+    var finalImageUrl = 'boost'
 
-    const imageUrl = props.imageUrl;
-    const imageUrlSplit = imageUrl.split("\\");
-    const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}`; //3002 - server port
+    if(props.imageUrl){
+        const imageUrl = props.imageUrl;
+        const imageUrlSplit = imageUrl.split("\\");
+        var finalImageUrl = `${process.env.REACT_APP_SERVER_AMAZON}/${imageUrlSplit[0]}`; //3002 - server port
+    }
+    
+    
 
 
     useEffect(() => {

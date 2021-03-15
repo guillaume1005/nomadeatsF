@@ -244,6 +244,7 @@ export default function SellerDashboard(props) {
 
     // already have the index
 
+
     if (newArray[index].customs.price){
       newArray[index].customs.price[number] = event.target.value
     }
@@ -327,6 +328,7 @@ export default function SellerDashboard(props) {
                 onChange={(event)=>handleChangeAmount(event, index, number)}
                 startAdornment={<InputAdornment position="start">€</InputAdornment>}
                 labelWidth={60}
+                type='number'
               />
             </FormControl>
             </>

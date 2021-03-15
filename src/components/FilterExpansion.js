@@ -84,7 +84,7 @@ export default function SimpleExpansionPanel(props) {
 
                 const imageUrl = item.item.imageUrl;
                 const imageUrlSplit = imageUrl.split("\\");
-                const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}`; //3002 - server port
+                const finalImageUrl = `${process.env.REACT_APP_SERVER_AMAZON}/${imageUrlSplit[0]}`; //3002 - server port
 
 
                 return (

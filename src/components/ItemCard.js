@@ -66,9 +66,17 @@ function Alert(props) {
 export default function ItemCard(props) {
   const classes = useStyles();
   const { title, imageUrl, description, price, _id, options } = props; // get the props
-  const imageUrlSplit = imageUrl.split("\\"); // this is for windows image ?
   // before there was also 'imageUrlSplit[1]', removed now after imageUrlSplit[0]
-  const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}`; //3002 - server port
+  // const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}`; //3002 - server port
+  // const finalImageUrl = `${process.env.REACT_APP_SERVER_AMAZON}/${imageUrlSplit[0]}`; // 3002 -server port
+
+  var finalImageUrl = 'boost'
+
+  if (props.imageUrl) {
+    const imageUrl = props.imageUrl;
+    const imageUrlSplit = imageUrl.split("\\");
+    var finalImageUrl = `${process.env.REACT_APP_SERVER_AMAZON}/${imageUrlSplit[0]}`; //3002 - server port
+  }
 
   const dispatch = useDispatch();
 
@@ -137,6 +145,7 @@ export default function ItemCard(props) {
     dispatch(deleteItem(_id));
   };
 
+
   const handleCart = (options) => {
 
     // transforming options into
@@ -185,6 +194,8 @@ export default function ItemCard(props) {
   const handleSnackBar = (event, reason) => {
     if (addCartSuccess || addCartSuccess == null) setSnackBar(true);
   };
+
+  console.log(finalImageUrl)
 
 
 

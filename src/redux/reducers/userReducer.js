@@ -50,7 +50,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        items: [...state.items, action.payload],
+        items: [...state.items, action.payload], //update of an array in objects
       };
     case DELETE_ITEM:
       return {
