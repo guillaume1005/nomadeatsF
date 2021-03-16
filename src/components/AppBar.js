@@ -31,6 +31,15 @@ const useStyles = makeStyles(() => ({
     display: "inline-block",
   },
 
+  buttonStylesPresent: {
+    color: "black",
+    margin: "0 6px 0",
+    display: "inline-block",
+    backgroundColor: "green"
+  },
+
+  
+
   buttonStyles2: {
     color: "black",
     margin: "0 6px 0",
@@ -61,7 +70,7 @@ const useStyles = makeStyles(() => ({
     name : {
       fontSize: 14,
       color: "blue"
-    },
+    }, 
 
     title: {
       marginLeft: 0
@@ -102,9 +111,27 @@ export default function AppBarPrimary() {
     address,
   } = useSelector((state) => state.auth);
 
+  const {
+    cart
+  } = useSelector((state) => state.data);
+
   const handleLogout = () => {
     dispatch(logoutAction(history));
   };
+
+  
+  const check = (cart) => {
+
+    if(cart.length>0){
+      return true
+    }
+    return false
+
+  }
+
+  console.log(check(cart))
+
+
 
   return (
     <AppBar position="static" className={classes.appBar}>
@@ -147,8 +174,20 @@ export default function AppBarPrimary() {
                 <Button className={classes.buttonStyles}>Commandes</Button>
               </Link>
               <Link to={{ pathname: "/cart", state: { address: address } }}>
-                <Button className={classes.buttonStyles}>Panier</Button>                
+              {check(cart) ?
+              <Button className={classes.buttonStylesPresent}>Panier {cart.length}</Button>
+
+              :
+              
+              
+              <Button className={classes.buttonStyle}>Panier {cart.length}</Button>
+              
+
+              }
+
+              
               </Link>
+                {/* Object.keys(cart).length > 0 to find the length of an object */}
               <Button
                 onClick={handleLogout}
                 className={classes.buttonStyles}
@@ -162,7 +201,7 @@ export default function AppBarPrimary() {
             <>
               {/* otherwise display logout */}
               <Link to={{ pathname: "/cart", state: { address: address } }}>
-                <Button className={classes.buttonStyles}>Panier</Button>                
+                <Button className={classes.buttonStylesPresent}>Panier {cart.length}</Button>
               </Link>
 
                   

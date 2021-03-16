@@ -51,7 +51,7 @@ export const loginAction = (userData, history) => (dispatch) => {
       dispatch(getUserData()); // here we store the data 
       dispatch({ type: CLEAR_ERRORS });
       console.log("Authenticated, check localStorage", jwt);
-      history.push("/");
+      history.push("/"); // change the page 
     })
     .catch((err) => {
       if (err.response) {

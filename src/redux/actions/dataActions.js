@@ -15,6 +15,7 @@ import {
   DELETE_ITEM_CART,
   SET_ERRORS,
   SET_ORDERS,
+  EDIT_SMS,
   EDIT_STATUS,
 } from "../types";
 import axios from "../../util/axios";
@@ -292,6 +293,17 @@ export const changeOrderStatus = (orderId, body) => (dispatch) => {
       console.log(err.response);
     });
 };
+
+export const changeSmsStatus = (sms) => (dispatch) => {
+  axios.post('/sms',sms)
+  .then((res)=> {
+    console.log(res.data.sms)
+    dispatch({
+      type: EDIT_SMS,
+      payload: res.data.sms
+    })
+  })
+}
 
 export const socketStatusUpdate = (order) => (dispatch) => {
   dispatch({

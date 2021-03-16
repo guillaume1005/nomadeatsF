@@ -14,6 +14,10 @@ import RestaurantInfo from "../components/RestaurantInfo";
 import RestaurantItems from "../components/RestaurantItems";
 import SearchBar from "../components/SearchBar";
 import { addItem } from "../redux/actions/dataActions";
+import { changeSmsStatus } from "../redux/actions/dataActions"
+//switch
+import Switch from "../components/Switch";
+
 
 const useStyles = makeStyles((theme) => ({
   ...theme.spreadThis,
@@ -26,12 +30,24 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#5a5c5a",
     },
   },
+  switch: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row'
+  },
+  text: {
+    marginTop: 8,
+    marginRight: '40px',
+    fontSize: 14,
+    color: 'blue'
+  },
+
 }));
 
 export default function SellerDashboard() {
   const classes = useStyles();
   const sellerData = useSelector((state) => state.auth); // 
-  const { items } = sellerData; // access the variable from this, only take the items
+  const { items, sms } = sellerData; // access the variable from this, only take the items
   const dispatch = useDispatch();
 
 
@@ -114,9 +130,35 @@ export default function SellerDashboard() {
     setFilteredItemsState(newList);
   };
 
+  //switch
+  // const [isToggled, setIsToggled] = useState(sms);
+
+  const handleToggle = () => {
+    // const boss = !isToggled, immmediate change for sending
+    
+    
+    var objectSms = {
+      'sms': !sms
+    }
+    
+    dispatch(changeSmsStatus(objectSms))
+    // setIsToggled(!isToggled);
+  }
+
+  console.log(sms)
+
+  // props can change by the server and with useDispatch
+
 
   return (
     <>
+    <div className={classes.switch}>
+        <Typography
+          gutterBottom
+          variant="h8"
+          className={classes.text}>Commandes listées par sms ?</Typography>
+        <Switch isToggled={sms} onToggle={() => handleToggle()} />
+    </div>
       <RestaurantInfo {...sellerData} />
       <Grid container direction="row" style={{ marginTop: 40 }}>
         <Grid item xs={12} sm={1} />

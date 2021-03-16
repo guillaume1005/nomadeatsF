@@ -5,8 +5,8 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Dialog, Modal } from "@material-ui/core";
-import InsideModal from "./InsideModal";
+
+import Infos from './Infos'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,15 +33,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleExpansionPanel(props) {
 
+
   const classes = useStyles();
-  const [open, setOpen] = useState(false)
+
+
+  // const [imageList, setImageList] = useState([]);
+  // const [itemList, setItemList] = useState([])
+
 
   let items;
+  let array = [];
   let totalPrice = 0;
   const finalImageUrl = '//'
   if (props.condition === "Orders") {
     items = props.items;
     items.forEach((item) => {
+      array.push(false)
       totalPrice = totalPrice + item.quantity * item.item.price; // the item contains the itemId like
       // item is the object containing the item props cause items is array [{item: ''}]
       item.item.options.forEach((cat)=>{
@@ -54,11 +61,8 @@ export default function SimpleExpansionPanel(props) {
       })
     });
   }
-
-  const handleClick = () => {
-
-    setOpen(true)
-  }
+  
+  
 
   return (
     <>
@@ -80,15 +84,12 @@ export default function SimpleExpansionPanel(props) {
         >
           {props.condition === "Orders" && (
             <>
-              {items.map((item, index) => {
-
-                const imageUrl = item.item.imageUrl;
-                const imageUrlSplit = imageUrl.split("\\");
-                const finalImageUrl = `${process.env.REACT_APP_SERVER_AMAZON}/${imageUrlSplit[0]}`; //3002 - server port
+              {items.map((item, index) => 
 
 
-                return (
+                
                   <>
+                  {/* another return before items */}
                   {/* Dans les maps il y a des returns */}
                   <Typography
                     key={index}
@@ -108,20 +109,21 @@ export default function SimpleExpansionPanel(props) {
                     <br />
                   </Typography>
 
-                  <Dialog key={index+1} open={open} >
+                  {/* Component unique */}
 
-                    <InsideModal key={index+2} setOpen={setOpen} finalImageUrl={finalImageUrl} options={item.item} follow={true} />
+                  <Infos key={index} item={item} />
 
 
-                  </Dialog>
                 </>
-                );
 
-              })}
-              <Typography variant="h5" className={classes.heading}>
-                Total - {totalPrice} €
-              </Typography>
-              <button className={classes.buttonAccept} onClick={()=>handleClick()}>Détails</button>
+               
+                
+
+              )}
+            <Typography variant="h5" className={classes.heading}>
+              Total Avec Livraison- {totalPrice} €
+            </Typography>
+
                 
 
             

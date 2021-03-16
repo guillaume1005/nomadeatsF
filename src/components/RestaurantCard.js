@@ -40,7 +40,16 @@ export default function RestaurantCard(props) {
     paymentString = `Accepts ${payment[0].toLowerCase()} & ${payment[1].toLowerCase()} payments`;
 
   return (
+
     <Card variant="outlined">
+      <Link
+        to={{
+          pathname: `order/${restUrl}`,
+          state: {
+            restId: _id,
+          },
+        }}
+      >
       <SwipeableImages images={imageUrl} type="home" />
       <CardContent className={classes.cardContent}>
         <Typography gutterBottom variant="h5" component="h2">
@@ -61,19 +70,14 @@ export default function RestaurantCard(props) {
       </CardContent>
       <hr />
       <CardActions>
-        <Link
-          to={{
-            pathname: `order/${restUrl}`,
-            state: {
-              restId: _id,
-            },
-          }}
-        >
+
           <Button size="small" color="primary">
             Je commande
           </Button>
-        </Link>
+        
       </CardActions>
+      </Link>
     </Card>
+
   );
 }

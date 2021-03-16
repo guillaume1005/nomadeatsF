@@ -84,7 +84,7 @@ const Cart = (props) => {
   let zipError = null;
   let phoneNoError = null;
 
-  if (price !== 0) deliveryCharge = 2; // change the delivery charge (maybe always 2 euros)
+  if (price !== 0) deliveryCharge = 0; // change the delivery charge (maybe always 2 euros)
 
   const handlePlaceOrder = () => {
     const userData = {

@@ -195,7 +195,6 @@ export default function ItemCard(props) {
     if (addCartSuccess || addCartSuccess == null) setSnackBar(true);
   };
 
-  console.log(finalImageUrl)
 
 
 

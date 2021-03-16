@@ -15,6 +15,8 @@ import { addToCart } from "../redux/actions/dataActions";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
+// Dialog
+
 
 
 
@@ -79,6 +81,12 @@ const useStyles = makeStyles({
     bande:{
         width:'100%',
         background: "lightgray"
+    },
+    titleB: {
+        fontSize: 40,
+        display: 'flex',
+        justifyContent: 'center',
+        color: 'red'
     }
 
 
@@ -197,7 +205,7 @@ export default function InsideModal(props){
     const [copySettle, setCopySettle] = useState(options) 
 
     const classes = useStyles()
- 
+
     const renderTextField = () => {
 
 
@@ -267,14 +275,15 @@ export default function InsideModal(props){
 
     return(
         <>
-
+        
         <div className={classes.content}>
 
-            <div onClick={() => { setOpen(false) }} style={{ cursor: 'pointer', position: 'fixed' }}>
+            <div onClick={() =>  setOpen(false) } style={{ cursor: 'pointer', position: 'fixed' }}>
                 <CloseButton />
             </div>
             
             <img src={finalImageUrl} className={classes.cover} alt=''/>
+                <div className={classes.titleB}> {copySettle.title} </div>
 
 
 

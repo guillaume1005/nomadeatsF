@@ -6,6 +6,7 @@ import {
   ADD_ITEM,
   DELETE_ITEM,
   EDIT_ITEM,
+  EDIT_SMS
 } from "../types";
 
 const initialState = {
@@ -23,15 +24,16 @@ const initialState = {
   cart: {},
   _id: "",
   firstName: "",
-  lastName: "", 
+  lastName: "",
+  sms: "" // adding the sms in the data received
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return {
-        authenticated: true,
-        ...action.payload,
+        authenticated: true, // change the authentication
+        ...action.payload, // + all the objects in the payload
         loading: false,
       };
     case SET_AUTHENTICATED:
@@ -65,6 +67,11 @@ export default function (state = initialState, action) {
           item._id === action.payload._id ? { ...action.payload } : item
         ),
       };
+    case EDIT_SMS:
+      return {
+        ...state,
+        sms: action.payload
+      }
 
     default:
       return state;
