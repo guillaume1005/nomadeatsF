@@ -117,7 +117,7 @@ const HomeStart = () => {
           0
         </Typography>
         <Typography className={classes.delivery} noWrap>
-          COMMISSIONS
+          COMMISSION
         </Typography>
         <Typography variant="body2" className={classes.paragraph}>
           Nos restaurateurs adorés ont besoin d'aide, particulièrement en
