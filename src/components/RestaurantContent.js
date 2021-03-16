@@ -31,6 +31,7 @@ const RestaurantContent = () => {
   const { restaurants } = useSelector((state) => state.data);
   const restaurantArray = restaurants.restaurants;
 
+
   const getRestaurantCard = (restaurantObj) => {
     return (
       <Grid item xs={12} sm={3} key={restaurantObj._id}>
