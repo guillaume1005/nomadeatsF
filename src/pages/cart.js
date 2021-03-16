@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
       color: "#bfbfbf",
     },
   },
+  spanboss:{
+    color: 'blue',
+    fontSize: 14
+  },
   '@media only screen and (max-width: 750px)': {
     gridStripe:{
 
@@ -71,6 +75,8 @@ const Cart = (props) => {
   //creator is the name of the restaurant that created this, need creator and id (and after also location)
   const { errors } = useSelector((state) => state.UI);
   const history = useHistory();
+
+  const [big, setBig] = useState(false)
 
   console.log(history)
 
@@ -95,6 +101,7 @@ const Cart = (props) => {
       phoneNo: inputs.phoneNo,
     };
     dispatch(fetchAddress(userData, history));
+    setBig(true)
   };
 
   const { inputs, handleInputChange } = useForm({
@@ -153,6 +160,8 @@ const Cart = (props) => {
     }
   }
 
+
+
   return (
     
     <>
@@ -164,7 +173,7 @@ const Cart = (props) => {
           <Typography variant="h5" className={classes.title}>
             {step === 1 && `Cart (${cartItems} Items)`}
             {/* We render the cartItems here */}
-            {step === 2 && "Delivery Details"}
+            {step === 2 && "Informations*: Remplir attentivement"}
             {/* We add a step 3 for the credit card */}
             {step === 3 && "Moyen de paiement"}
             {/* The steps allows to select what is rendered */}
@@ -205,7 +214,7 @@ const Cart = (props) => {
                     <TextField
                       id="aptName"
                       name="aptName"
-                      label="Flat/Apartment Name"
+                      label="Numéro d'étage"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.aptName}
@@ -217,7 +226,7 @@ const Cart = (props) => {
                     <TextField
                       id="locality"
                       name="locality"
-                      label="Locality"
+                      label="Ville"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.locality}
@@ -229,7 +238,7 @@ const Cart = (props) => {
                     <TextField
                       id="street"
                       name="street"
-                      label="Street"
+                      label="Rue"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.street}
@@ -241,7 +250,7 @@ const Cart = (props) => {
                     <TextField
                       id="zipCode"
                       name="zip"
-                      label="Zip Code"
+                      label="Code Postal"
                       className={classes.textField}
                       onChange={handleInputChange}
                       value={inputs.zip}
@@ -254,7 +263,7 @@ const Cart = (props) => {
                     <TextField
                       id="phoneNo"
                       name="phoneNo"
-                      label="Contact Number"
+                      label="Numéro de Contact"
                       className={classes.textField}
                       type="number"
                       onChange={handleInputChange}
@@ -362,6 +371,12 @@ const Cart = (props) => {
                   <Typography gutterBottom variant="h5" noWrap>
                     <div className={classes.spaceTypo}>
                       <span>Total</span>
+                      {big ? 
+                      <span className={classes.spanboss}>Patienter pour <br/> le paiement...</span>
+                      :
+                      <>
+                      </>
+                      }
                       <span> {price + deliveryCharge} €</span>
                     </div>
                     <br />

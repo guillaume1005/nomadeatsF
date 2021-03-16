@@ -48,6 +48,8 @@ export default function SimpleExpansionPanel(props) {
         console.log(open)
     }
 
+    console.log(item)
+
 
     return(
         <div>
