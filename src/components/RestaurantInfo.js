@@ -103,7 +103,7 @@ function Restaurant(props) {
                 Addresse: {addressString}
               </Typography>
               <Typography variant="body2" color="textPrimary">
-                Tel: +33 {phoneNo}
+                {/* Tel: +33 {phoneNo} before yes*/}
               </Typography>
               <Typography variant="body2" color="textPrimary">
                 Ouvert

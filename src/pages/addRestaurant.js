@@ -282,7 +282,7 @@ export default function AddRestaurant() {
                     <TextField
                       id="phoneNo"
                       name="phoneNo"
-                      label="Numéro de contact"
+                      label="Telephone portable"
                       className={classes.textField}
                       type="number"
                       onChange={handleInputChange}

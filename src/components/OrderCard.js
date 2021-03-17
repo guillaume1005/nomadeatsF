@@ -122,7 +122,7 @@ const OrderCard = (props) => {
         </Typography>
         {role === "ROLE_USER" && (
           <Typography gutterBottom variant="body1" color="textPrimary">
-            Tel - +33 {order.seller.phone}
+            {/* Tel - +33 {order.seller.phone} before there was this */}
           </Typography>
         )}
 

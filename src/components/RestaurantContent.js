@@ -31,6 +31,8 @@ const RestaurantContent = () => {
   const { restaurants } = useSelector((state) => state.data);
   const restaurantArray = restaurants.restaurants;
 
+  console.log(restaurants)
+
 
   const getRestaurantCard = (restaurantObj) => {
     return (

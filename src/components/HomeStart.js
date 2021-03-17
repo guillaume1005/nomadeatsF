@@ -40,6 +40,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: -30,
     marginBottom: 20,
   },
+  delivery2: {
+    color: "#157a21",
+    fontSize: 50,
+    fontWeight: "bold",
+    marginTop: -30,
+    marginBottom: 20,
+  },
   paragraph: {
     width: 400,
     fontSize: 14.5,
@@ -85,6 +92,12 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       marginLeft: '-60px'
     },
+    delivery2: {
+      fontSize: 30,
+      display: 'flex',
+      justifyContent: 'center',
+      marginLeft: '-60px'
+    },
     paragraph :{
       display: 'none'
     },
@@ -117,8 +130,14 @@ const HomeStart = () => {
           0
         </Typography>
         <Typography className={classes.delivery} noWrap>
-          COMMISSION
+          COMMISSION 
+          
         </Typography>
+        <Typography className={classes.delivery2} noWrap>
+          30% moins cher
+          
+        </Typography>
+
         <Typography variant="body2" className={classes.paragraph}>
           Nos restaurateurs adorés ont besoin d'aide, particulièrement en
           ce moment. C'est pourquoi nous proposons une application bénévole:
