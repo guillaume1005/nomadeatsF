@@ -65,7 +65,14 @@ function Alert(props) {
 
 export default function ItemCard(props) {
   const classes = useStyles();
-  const { title, imageUrl, description, price, _id, options } = props; // get the props
+  const { title, imageUrl, description, price, _id, options, available } = props; // get the props
+
+  var available1 = true
+
+  if (!available){ //boolean, enter if the available is set at false
+
+    available1 = available
+  }
   // before there was also 'imageUrlSplit[1]', removed now after imageUrlSplit[0]
   // const finalImageUrl = `${process.env.REACT_APP_SERVER_URL}/${imageUrlSplit[0]}`; //3002 - server port
   // const finalImageUrl = `${process.env.REACT_APP_SERVER_AMAZON}/${imageUrlSplit[0]}`; // 3002 -server port
@@ -79,6 +86,9 @@ export default function ItemCard(props) {
   }
 
   const dispatch = useDispatch();
+
+  const [copyAvailable, setCopyAvailable] = useState(available1)
+
 
   const {
     authenticated,
@@ -123,6 +133,7 @@ export default function ItemCard(props) {
   };
 
   const handleSubmit = () => {
+    console.log(copyAvailable)
     const itemData = new FormData();
     if (image !== null) itemData.append("image", image);
     else itemData.append("image", imageUrl);
@@ -130,6 +141,7 @@ export default function ItemCard(props) {
     itemData.append("description", inputs.description);
     itemData.append("price", inputs.price);
     itemData.append("options", JSON.stringify(copyOptions))
+    itemData.append("available", copyAvailable)
     dispatch(editItem(itemData, _id)); // eslint-disable-next-line
     handleClose();
   };
@@ -273,11 +285,13 @@ export default function ItemCard(props) {
       </Card>
       <ItemDialog 
         open={open}
+        available1={copyAvailable}
+        setAvailable={setCopyAvailable}
         handleClose={handleClose}
         handleSubmit={handleSubmit}
         handleFileSelect={handleFileSelect}
         inputs={inputs}
-        handleInputChange={handleInputChange}
+        handleInputChange={handleInputChange} // this is to modify the props, maybe better if the send function in compoment
         settle={copyOptions}
         title={title}
         onSetCopy={onSetCopy} // hook

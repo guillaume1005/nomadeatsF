@@ -145,7 +145,6 @@ export default function SellerDashboard() {
     // setIsToggled(!isToggled);
   }
 
-  console.log(sms)
 
   // props can change by the server and with useDispatch
 

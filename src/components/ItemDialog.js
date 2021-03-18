@@ -15,6 +15,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddButtonCircle from '@material-ui/icons/AddCircle'
 import AddButton from '@material-ui/icons/Add'
 import { FormControl, InputAdornment, InputLabel, OutlinedInput } from "@material-ui/core";
+import Switch from "./Switch";
 
 
 const useStyles = makeStyles((theme) => ({ 
@@ -43,6 +44,16 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(3),
     marginLeft: '20vw'
+  },
+
+  switch: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginRight: '50px'
+  },
+  
+  availability: {
+    marginRight: '30px'
   }
 
 
@@ -61,6 +72,8 @@ export default function SellerDashboard(props) {
     handleFileSelect,
     settle,
     onSetCopy,
+    available1,
+    setAvailable
     } = props;
   
 
@@ -69,6 +82,20 @@ export default function SellerDashboard(props) {
  
 
   const [category, setCategory] = useState({})
+
+  
+  const handleToggle = () => {
+    setCategory({
+      'boss': 'boss'
+    })
+
+    console.log(available1)
+    // update of newArray
+    setAvailable(!available1)
+
+
+  }
+
 
 
 
@@ -207,7 +234,6 @@ export default function SellerDashboard(props) {
 
 
   const { errors } = useSelector((state) => state.UI);
-
   
   
 
@@ -258,6 +284,7 @@ export default function SellerDashboard(props) {
 
 
   }
+
 
   const renderTextField = () => {
     return (
@@ -347,6 +374,10 @@ export default function SellerDashboard(props) {
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" style={{width:'100%'}}>
     {/* Before maxwWdith='sm' */}
       <DialogTitle>Détails</DialogTitle>
+      <div className={classes.switch}>
+        <Typography className={classes.availability}>Disponible Aujourd'hui ?</Typography>
+        <Switch isToggled={available1} onToggle={() => handleToggle()} />
+      </div>
       <DialogContent>
         <form>
           <TextField
@@ -363,7 +394,7 @@ export default function SellerDashboard(props) {
           <TextField
             name="description"
             label="Description"
-            placeholder="Spicy, non-veg, Basil leaves"
+            placeholder="Spicy, non-veg, Basil leaves" // no components with index, directly mapping components, and properties state in it
             className={classes.textField}
             value={inputs.description}
             onChange={handleInputChange}

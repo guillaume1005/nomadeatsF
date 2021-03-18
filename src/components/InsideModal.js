@@ -87,6 +87,13 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         color: 'red'
+    },
+
+    available: {
+        fontSize: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        color: 'red'
     }
 
 
@@ -273,6 +280,7 @@ export default function InsideModal(props){
     )
     }
 
+
     return(
         <>
         
@@ -284,6 +292,10 @@ export default function InsideModal(props){
             
             <img src={finalImageUrl} className={classes.cover} alt=''/>
                 <div className={classes.titleB}> {copySettle.title} </div>
+                {copySettle.available &&
+                    <div className={classes.available}>Rupture de Stock</div>
+                }
+                
 
 
 
@@ -309,6 +321,9 @@ export default function InsideModal(props){
 
         ):authenticated ? (
         <>
+        {!copySettle.available && // this means if available does not exist or is false
+        <>
+        
         <Button
             color="secondary"
             style={{
@@ -347,6 +362,8 @@ export default function InsideModal(props){
             </Snackbar>
         </div>
         
+        </>
+        }
         </>
         ):
         <Link to='/login'>
