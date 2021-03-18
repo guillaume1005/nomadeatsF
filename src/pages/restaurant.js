@@ -16,6 +16,7 @@ import { fetchRestaurant } from "../redux/actions/dataActions";
 
 import { useMediaQuery } from 'react-responsive'
 
+
 export default function Restaurant(props) {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' }) // this is a hook
 
@@ -79,6 +80,8 @@ export default function Restaurant(props) {
 
   return (
     <>
+    {restaurant.available ?
+    <>
       {loading ? (
         <Spinner />
       ) : (
@@ -132,6 +135,12 @@ export default function Restaurant(props) {
           </Grid>
         </>
       )}
+    </>
+    :
+    <>
+    <div style={{display: 'flex', justifyContent: 'center', fontSize: 40, color: 'green'}}>Bientot disponible...</div>
+    </>
+    }
     </>
   );
 }
